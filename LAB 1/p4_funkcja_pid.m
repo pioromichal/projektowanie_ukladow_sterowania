@@ -1,16 +1,16 @@
-function [y, u] = p4_funkcja_pid(kk, i_yzad, Kk, Tk)
+function [y, u] = p4_funkcja_pid(kk, yzad, Kk, Tk)
 %P4_FUNKCJA_PID Summary of this function goes here
 %   Detailed explanation goes here
 
 % inicjalizacja
-dumax = 0.1;
+dumax = 0.05;
 umin = 0.3; umax=0.7;
 
 [r2, r1, r0] = p4_pid_strojenie(Kk,Tk,0.5);
 
 % warunki początkowe
 u(1:11)=0.5; y(1:11)=4; e(1:11)=0;
-yzad(1:9)=4; yzad(10:kk)=i_yzad;
+% yzad(1:9)=4; yzad(10:kk)=i_yzad;
 
 % główna pętla symulacyjna
 for k=12:kk 

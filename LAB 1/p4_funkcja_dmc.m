@@ -1,10 +1,10 @@
-function [y, u] = p4_funkcja_dmc(kk, i_yzad, N, Nu, D, lambda)
+function [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda)
 %P4_FUNKCJA_DMC Summary of this function goes here
 %   Detailed explanation goes here
 clear; close all;
 
 % kk=200; % koniec symulacji
-dumax = 0.01;
+dumax = 0.05;
 umin = 0.3; umax=0.7;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
@@ -37,7 +37,7 @@ ku = K1*Mp;
 % Warunki początkowe
 u(1:11)=0.5; y(1:11)=4; e(1:11)=0;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
-yzad(1:9)=4; yzad(10:kk)=i_yzad;
+% yzad(1:9)=4; yzad(10:kk)=i_yzad;
 
 % Główna pętla symulacyjna
 for k=12:kk
