@@ -1,4 +1,4 @@
-clear all; close all;
+clear; close all;
 
 [y,u] = p3_odpowiedz_skokowa(150);
 

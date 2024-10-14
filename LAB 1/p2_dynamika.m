@@ -1,4 +1,4 @@
-clear all; close all;
+clear; close all;
 u(1:11)=0.3; y(1:11)=4; e(1:11)=0; 
 kk=500; % koniec symulacji
 

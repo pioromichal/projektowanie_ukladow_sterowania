@@ -1,7 +1,6 @@
 function [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda)
 %P4_FUNKCJA_DMC Summary of this function goes here
 %   Detailed explanation goes here
-clear; close all;
 
 % kk=200; % koniec symulacji
 dumax = 0.05;
