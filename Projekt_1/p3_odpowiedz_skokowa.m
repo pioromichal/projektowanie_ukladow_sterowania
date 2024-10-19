@@ -5,7 +5,7 @@ function [y,u] = p3_odpowiedz_skokowa(kk)
 Ypp=4; Upp=0.5; dU=0.2;
 
 % kk=150; % koniec symulacji
-u(1:kk)=0.7; y(1:11)=4;
+u(1:kk)=Upp+dU; y(1:11)=4;
 
 % główna pętla symulacyjna
 for k=12:kk

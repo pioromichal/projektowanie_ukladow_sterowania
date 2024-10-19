@@ -1,4 +1,4 @@
-function [y, u] = p4_funkcja_pid(kk, yzad, Kk, Tk)
+function [y, u] = p4_funkcja_pid(kk, yzad, r2, r1, r0)
 %P4_FUNKCJA_PID Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -6,7 +6,7 @@ function [y, u] = p4_funkcja_pid(kk, yzad, Kk, Tk)
 dumax = 0.05;
 umin = 0.3; umax=0.7;
 
-[r2, r1, r0] = p4_pid_strojenie(Kk,Tk,0.5);
+% [r2, r1, r0] = p4_pid_strojenie(Kk,Tk,0.5);
 
 % warunki początkowe
 u(1:11)=0.5; y(1:11)=4; e(1:11)=0;

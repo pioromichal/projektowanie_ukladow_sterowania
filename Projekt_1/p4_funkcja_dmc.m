@@ -58,10 +58,10 @@ for k=12:kk
     % Ograniczenia przyrostu
     if  delta_u < -dumax
         delta_u = -dumax;
-        disp(['-du ' num2str(k)]);
+        % disp(['-du ' num2str(k)]);
     elseif delta_u > dumax
         delta_u = dumax;
-        disp(['du ' num2str(k)]);
+        % disp(['du ' num2str(k)]);
     end
 
     % Aktualizacja sygnału sterującego
@@ -70,10 +70,10 @@ for k=12:kk
     % Ograniczenia
     if u(k) < umin
         u(k) = umin;
-        disp(['umin ' num2str(k)]);
+        % disp(['umin ' num2str(k)]);
     elseif u(k) > umax
         u(k) = umax;
-        disp(['umax ' num2str(k)]);
+        % disp(['umax ' num2str(k)]);
     end
 end
 

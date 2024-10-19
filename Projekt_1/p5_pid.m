@@ -1,4 +1,4 @@
-clear; close all;
+clear;
 
 kk = 300;
 yzad = 4.2;
@@ -6,7 +6,13 @@ yzad = yzad*ones(kk,1);
 % yzad(1:9)=4; yzad(10:kk)=4.1;
 Kk = 0.1;
 Tk = 5;
-[y, u] = p4_funkcja_pid(kk, yzad, Kk, Tk);
+
+[r2, r1, r0] = p4_pid_strojenie(Kk,Tk,0.5);
+% r2 = 0.1;
+% r1 = 0.1;
+% r0 = 0.1;
+
+[y, u] = p4_funkcja_pid(kk, yzad, r2, r1, r0);
 
 % wyniki symulacji
 figure; stairs(u);

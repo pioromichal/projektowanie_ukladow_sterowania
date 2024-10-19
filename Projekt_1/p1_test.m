@@ -1,6 +1,6 @@
 clear; close all;
 kk=200; % koniec symulacji
-u(1:kk)=0.4; y(1:11)=4; 
+u(1:kk)=0.5; y(1:11)=4; 
 
 % główna pętla symulacyjna
 for k=12:kk 
