@@ -49,12 +49,6 @@ for k=12:kk
     % Obliczenie przyrostu sygnału sterującego DMC
     delta_u = ke * e(k) - ku * delta_u_p';
 
-    % Aktualizacja przeszłych przyrostów sterowania
-    for n=D-1:-1:2
-        delta_u_p(n) = delta_u_p(n-1);
-    end
-    delta_u_p(1) = delta_u;
-
     % Ograniczenia przyrostu
     if  delta_u < -dumax
         delta_u = -dumax;
@@ -64,17 +58,25 @@ for k=12:kk
         % disp(['du ' num2str(k)]);
     end
 
+    % Ograniczenia
+    if u(k-1)+delta_u < umin
+        delta_u = umin-u(k-1);
+        % u(k) = umin;
+        % disp(['umin ' num2str(k)]);
+    elseif u(k-1)+delta_u > umax
+        delta_u = umax-u(k-1);
+        % u(k) = umax;
+        % disp(['umax ' num2str(k)]);
+    end
+
     % Aktualizacja sygnału sterującego
     u(k)=u(k-1)+delta_u;
 
-    % Ograniczenia
-    if u(k) < umin
-        u(k) = umin;
-        % disp(['umin ' num2str(k)]);
-    elseif u(k) > umax
-        u(k) = umax;
-        % disp(['umax ' num2str(k)]);
+    % Aktualizacja przeszłych przyrostów sterowania
+    for n=D-1:-1:2
+        delta_u_p(n) = delta_u_p(n-1);
     end
+    delta_u_p(1) = delta_u;
 end
 
 end

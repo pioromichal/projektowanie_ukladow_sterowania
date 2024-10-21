@@ -10,14 +10,14 @@ function E = dmc_funkcja_kosztu(parametry, kk, yzad, D)
     E = (yzad - y')' * (yzad - y');
 end
 
-parametry_pocz = [20, 20, 20];
+parametry_pocz = [20, 20, 3];
 kk = 300;
 yzad = 4.15;
 yzad = yzad * ones(kk, 1);
 D = 100;
 
 ogr_dol = [1, 1, 0.0];  
-ogr_gor = [100, 100, 50];
+ogr_gor = [60, 100, 50];
 
 % Używamy algorytmu genetycznego
 IntCon = [1, 2];  % N i Nu muszą być liczbami całkowitymi
