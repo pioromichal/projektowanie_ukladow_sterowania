@@ -19,14 +19,14 @@ ogr_gor = [1, 1, 1];
 
 parametry_optymalne = fmincon(@(parametry) pid_funkcja_kosztu(parametry, kk, yzad), parametry_pocz, [], [], [], [], ogr_dol, ogr_gor);
 
-disp('Optymalne parametry PID:');
-disp(['r0: ', num2str(parametry_optymalne(1))]);
-disp(['r1: ', num2str(parametry_optymalne(2))]);
-disp(['r2: ', num2str(parametry_optymalne(3))]);
-
 r2=parametry_optymalne(3);
 r1=parametry_optymalne(2);
 r0=parametry_optymalne(1);
+
+disp('Optymalne parametry PID:');
+disp(['r0: ', num2str(r0)]);
+disp(['r1: ', num2str(r1)]);
+disp(['r2: ', num2str(r2)]);
 
 [y, u] = p4_funkcja_pid(kk, yzad, r2, r1, r0);
 

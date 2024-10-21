@@ -1,5 +1,4 @@
 clear;
-clear;
 function E = dmc_funkcja_kosztu(parametry, kk, yzad, D)
     N = round(parametry(1)); % Zaokrąglamy, bo N musi być całkowite
     Nu = round(parametry(2)); % Zaokrąglamy, bo Nu musi być całkowite
@@ -25,15 +24,14 @@ options = optimoptions('ga', 'Display', 'iter'); % Opcje algorytmu genetycznego
 
 parametry_optymalne = ga(@(parametry) dmc_funkcja_kosztu(parametry, kk, yzad, D), 3, [], [], [], [], ogr_dol, ogr_gor, [], IntCon, options);
 
-
-disp('Optymalne parametry PID:');
-disp(['N: ', num2str(parametry_optymalne(1))]);
-disp(['Nu: ', num2str(parametry_optymalne(2))]);
-disp(['lambda: ', num2str(parametry_optymalne(3))]);
-
 N=parametry_optymalne(1);
 Nu=parametry_optymalne(2);
 lambda=parametry_optymalne(3);
+
+disp('Optymalne parametry DMC:');
+disp(['N: ', num2str(N)]);
+disp(['Nu: ', num2str(Nu)]);
+disp(['lambda: ', num2str(lambda)]);
 
 [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda);
 
