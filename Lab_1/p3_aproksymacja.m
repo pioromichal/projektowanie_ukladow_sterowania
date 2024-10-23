@@ -4,8 +4,9 @@ kk = 100;
 
 % zaladowac prawdziwe ymierz i umierz
 u(1:30)=0; u(31:kk)=1;
-ymierz = symulacja_pomiarow(kk,u)';
+% ymierz = symulacja_pomiarow(kk,u)';
 % ymierz=ones(kk,1);
+ymierz = odczyt_danych_z_txt("skok_1_27.txt");
 
 ogr_dol = [1, 1, 0, 0];  
 ogr_gor = [60, 60, 50, 20];
