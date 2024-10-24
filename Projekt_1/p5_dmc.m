@@ -1,10 +1,10 @@
 clear;
 kk = 300;
-yzad = 4.2;
+yzad = 2.5;
 yzad = yzad*ones(kk,1);
-N = 17;
-Nu = 20;
-D = 80;
+N = 50;
+Nu = 50;
+D = 200;
 lambda = 5;
 
 [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda);

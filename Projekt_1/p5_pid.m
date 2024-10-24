@@ -1,11 +1,11 @@
 clear;
 
-kk = 300;
-yzad = 4.2;
+kk = 600;
+yzad = 2.5;
 yzad = yzad*ones(kk,1);
 % yzad(1:9)=4; yzad(10:kk)=4.1;
-Kk = 0.1;
-Tk = 5;
+Kk = 0.15;
+Tk = 15;
 
 [r2, r1, r0] = p4_pid_strojenie(Kk,Tk,0.5);
 % r2 = 0.1;

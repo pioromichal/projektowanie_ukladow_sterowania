@@ -10,8 +10,8 @@ end
 
 clear;
 parametry_pocz = [0.0, 0.0, 0.0];
-kk = 300;
-yzad = 4.2;
+kk = 600;
+yzad = 2.5;
 yzad = yzad*ones(kk,1);
 
 ogr_dol = [-1, -1, -1];  

@@ -4,10 +4,10 @@ function [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda)
 
 % kk=200; % koniec symulacji
 dumax = 0.05;
-umin = 0.3; umax=0.7;
+umin = 0.9; umax=1.5;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
-ys = p3_odpowiedz_skokowa(150);
+ys = p3_odpowiedz_skokowa(250);
 
 % Parametry DMC
 % N=20; Nu=20; D=100; lambda=100;
@@ -34,14 +34,14 @@ ke = sum(K1);
 ku = K1*Mp;
 
 % Warunki początkowe
-u(1:11)=0.5; y(1:11)=4; e(1:11)=0;
+u(1:11)=1.2; y(1:11)=2; e(1:11)=0;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 % yzad(1:9)=4; yzad(10:kk)=i_yzad;
 
 % Główna pętla symulacyjna
 for k=12:kk
     % Symulacja obiektu
-    y(k) = symulacja_obiektu1y_p1(u(k-10), u(k-11), y(k-1), y(k-2));
+    y(k) = symulacja_obiektu15y_p1(u(k-10), u(k-11), y(k-1), y(k-2));
 
     % Uchyb regulacji
     e(k)=yzad(k)-y(k);

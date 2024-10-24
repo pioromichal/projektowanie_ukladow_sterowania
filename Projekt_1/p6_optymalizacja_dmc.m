@@ -9,11 +9,11 @@ function E = dmc_funkcja_kosztu(parametry, kk, yzad, D)
     E = (yzad - y')' * (yzad - y');
 end
 
-parametry_pocz = [20, 20, 3];
+parametry_pocz = [30, 30, 1];
 kk = 300;
-yzad = 4.15;
+yzad = 2.5;
 yzad = yzad * ones(kk, 1);
-D = 100;
+D = 200;
 
 ogr_dol = [1, 1, 0.0];  
 ogr_gor = [60, 100, 50];
