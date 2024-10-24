@@ -9,8 +9,11 @@ ylabel('Wartości pomiarów');
 title('Pomiar 1');
 legend('show');
 
+fileID = fopen('Dane_1', 'w');
+
+
 T1 = zeros(600,1);
-G1 = 35;
+G1 = 25;
 % G1 = zeros(600,1);
 % W1 = zeros(600,1);
 i = 1;
@@ -27,13 +30,13 @@ while (1)
     sendControls([ 1 , 5 ] , [ 50 , G1 ]) ; % kolejno W1 i G1
 
     % aktualizacja wykresu
-    set(h1, 'YData', data1, 'XData', 1:t);
+    set(h1, 'YData', T1(i), 'XData', 1:t);
     drawnow;
 
     % synchronising with the control process
     waitForNewIteration () ; % wait for new iteration
-
+    fprintf(fileID, '%f %f\n', i-1, T1(i));
+    
     i = i + 1;
 end
-
-zapisz_dane_do_txt(T1, ["skok_1_" num2str(G1) ".txt"]);
+fclose(fileID);

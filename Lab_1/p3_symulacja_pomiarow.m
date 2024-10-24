@@ -1,4 +1,4 @@
-function y = symulacja_pomiarow(kk, u)
+function y = p3_symulacja_pomiarow(kk, u)
 
 % Ko=5,1, To=10, T1=1,87, T2=5,37
 

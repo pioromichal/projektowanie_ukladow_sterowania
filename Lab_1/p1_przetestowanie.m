@@ -1,5 +1,7 @@
+clear T1;
+
 addpath ('D:\ SerialCommunication ') ; % add a path
-initSerialControl COM6 % initialise com port
+initSerialControl COM4 % initialise com port
 
 % konfiguracja wykresu
 figure(1);
@@ -8,19 +10,19 @@ xlabel('Czas (s)');
 ylabel('Wartości pomiarów');
 title('Pomiar 1');
 legend('show');
-
+T1 = [];
 for t = 1:1000
     %obtaining measurements
     measurements = readMeasurements (1) ; % read measurements T1
-
+    T1(t) = measurements;
     % processing of the measurements
     disp ( measurements ) ; % process measurements
 
     %sending new values of control signals
-    sendControls ([ 1 , 5 ] , [ 50 , 27 ]) ; % kolejno W1 i G1
+    sendControls ([ 1 , 5 ] , [ 50 , 45 ]) ; % kolejno W1 i G1
 
     % aktualizacja wykresu
-    set(h1, 'YData', data1, 'XData', 1:t);
+    set(h1, 'YData', T1, 'XData', 1:t);
     drawnow;
 
     % synchronising with the control process
