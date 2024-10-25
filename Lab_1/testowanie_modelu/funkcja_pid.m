@@ -7,13 +7,19 @@ umin = 0; umax=100;
 
 % [r2, r1, r0] = p4_pid_strojenie(Kk,Tk,0.5);
 
+Ko = 0.38024;
+To = 6;
+T1 = 82.0474;
+T2 = 3.3333;
+[a1, a0, b1, b0] = parametry_rownania_roznicowego(Ko,To,T1,T2);
+Ypp = 32.68; Upp = 25;
 % warunki początkowe
 u(1:11)=25; y(1:11)=32.68; e(1:11)=0;
 
 % główna pętla symulacyjna
 for k=12:kk 
     % symulacja obiektu
-    y(k) = 1.6571*y(k-1) -0.66101*y(k-2) + 2.2956e-05*u(k-10) + 2e-05*u(k-11);
+    y(k) = Ypp -a1*(y(k-1)-Ypp)-a0*(y(k-2)-Ypp) + 1*(b1*(u(k-10)-Upp) + b0*(u(k-11)-Upp));
 
     % uchyb regulacji
     e(k)=yzad(k)-y(k);

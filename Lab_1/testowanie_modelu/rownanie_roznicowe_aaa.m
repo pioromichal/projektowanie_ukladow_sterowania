@@ -1,9 +1,9 @@
 clear;close all;
 
-Ko = 0.010881;
-To = 9;
-T1 = 83.3474;
-T2 = 2.4876;
+Ko = 0.38024;
+To = 6;
+T1 = 82.0474;
+T2 = 3.3333;
 Tp = 1;
 
 s = tf('s'); % określenie transmitancji jako wyrażenia z 's'
