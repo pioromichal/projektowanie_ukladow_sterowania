@@ -4,10 +4,11 @@ kk = 600;
 yzad = 2.5;
 yzad = yzad*ones(kk,1);
 % yzad(1:9)=4; yzad(10:kk)=4.1;
-Kk = 0.15;
-Tk = 15;
+K = 0.09;
+Ti = 7.5;
+Td = 1.8;
 
-[r2, r1, r0] = p4_pid_strojenie(Kk,Tk,0.5);
+[r2, r1, r0] = p4_pid_dyskretyzacja_param(K,Ti,Td,0.5);
 % r2 = 0.1;
 % r1 = 0.1;
 % r0 = 0.1;
@@ -25,4 +26,4 @@ legend('Wyjście', 'Wartość zadana');
 % close;
 
 E = (yzad-y')'*(yzad-y');
-disp([Kk Tk E])
+disp([K Ti Td E])

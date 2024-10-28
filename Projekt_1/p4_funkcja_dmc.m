@@ -1,16 +1,11 @@
 function [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda)
-%P4_FUNKCJA_DMC Summary of this function goes here
-%   Detailed explanation goes here
 
-% kk=200; % koniec symulacji
-dumax = 0.05;
+% Wartości ograniczeń
 umin = 0.9; umax=1.5;
+dumax = 0.05;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
 ys = p3_odpowiedz_skokowa(250);
-
-% Parametry DMC
-% N=20; Nu=20; D=100; lambda=100;
 
 % Konstrukcja macierzy M
 M = zeros(N,Nu);
@@ -33,15 +28,17 @@ K1 = K(1,:);
 ke = sum(K1);
 ku = K1*Mp;
 
+% Inicjalizacja
+u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
+
 % Warunki początkowe
-u(1:11)=1.2; y(1:11)=2; e(1:11)=0;
+u(1:11)=1.2; y(1:11)=2;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
-% yzad(1:9)=4; yzad(10:kk)=i_yzad;
 
 % Główna pętla symulacyjna
 for k=12:kk
     % Symulacja obiektu
-    y(k) = symulacja_obiektu15y_p1(u(k-10), u(k-11), y(k-1), y(k-2));
+    y(k)=symulacja_obiektu15y_p1(u(k-10),u(k-11),y(k-1),y(k-2));
 
     % Uchyb regulacji
     e(k)=yzad(k)-y(k);
@@ -49,7 +46,7 @@ for k=12:kk
     % Obliczenie przyrostu sygnału sterującego DMC
     delta_u = ke * e(k) - ku * delta_u_p';
 
-    % Ograniczenia przyrostu
+    % Ograniczenia przyrostu sygnału sterującego
     if  delta_u < -dumax
         delta_u = -dumax;
         % disp(['-du ' num2str(k)]);
@@ -58,7 +55,7 @@ for k=12:kk
         % disp(['du ' num2str(k)]);
     end
 
-    % Ograniczenia
+    % Ograniczenia wartości sygnału sterującego
     if u(k-1)+delta_u < umin
         delta_u = umin-u(k-1);
         % u(k) = umin;
