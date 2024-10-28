@@ -18,8 +18,4 @@ xlabel('k'); ylabel('y'); grid on; grid minor;
 legend('Wyjście', 'Wartość zadana');
 
 E = (yzad-y')'*(yzad-y');
-disp([N Nu D E])
-
-
-% zapisz_dane_do_txt(y, "aaa.txt");
-% aaa = odczyt_danych_z_txt("aaa.txt");
+disp([N Nu D lambda E])

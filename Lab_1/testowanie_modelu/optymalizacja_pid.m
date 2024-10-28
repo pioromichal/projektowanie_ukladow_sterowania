@@ -19,7 +19,7 @@ yzad = 35;
 yzad = yzad*ones(kk,1);
 
 ogr_dol = [0, 0, 0];  
-ogr_gor = [40, 200, 20];
+ogr_gor = [40, 40, 20];
 
 parametry_optymalne = fmincon(@(parametry) pid_funkcja_kosztu(parametry, kk, yzad), parametry_pocz, [], [], [], [], ogr_dol, ogr_gor);
 % 

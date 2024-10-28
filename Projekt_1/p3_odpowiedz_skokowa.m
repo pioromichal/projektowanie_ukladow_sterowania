@@ -1,7 +1,7 @@
 function [y,u] = p3_odpowiedz_skokowa(kk)
 %P3_ODPOWIEDZ_SKOKOW Summary of this function goes here
 %   Detailed explanation goes here
-
+kk = kk +1;
 Ypp=2; Upp=1.2; dU=0.3;
 
 % kk=150; % koniec symulacji

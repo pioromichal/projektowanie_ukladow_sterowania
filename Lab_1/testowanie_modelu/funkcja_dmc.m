@@ -12,9 +12,8 @@ T2 = 3.3333;
 Ypp = 32.68; Upp = 25;
 
 % warunki początkowe
-kks=700;
-us(1:kks)=1;
-ys = p3_model(T1,T2,K,Td,kks,us);
+us(1:D+10)=1;
+ys = p3_model(T1,T2,K,Td,D+10,us);
 
 % Konstrukcja macierzy M
 M = zeros(N,Nu);
@@ -50,14 +49,22 @@ for k=12:kk
 
     % Obliczenie przyrostu sygnału sterującego DMC
     delta_u = ke * e(k) - ku * delta_u_p';
-    
+
+    % Ograniczenia wartości sygnału sterującego
+    if u(k-1)+delta_u < umin
+        delta_u = umin-u(k-1);
+    elseif u(k-1)+delta_u > umax
+        delta_u = umax-u(k-1);
+    end
+
+    % Aktualizacja sygnału sterującego
     u(k)=u(k-1)+delta_u;
 
-    if u(k) < umin
-        u(k) = umin;
-    elseif u(k) > umax
-        u(k) = umax;
+    % Aktualizacja przeszłych przyrostów sterowania
+    for n=D-1:-1:2
+        delta_u_p(n) = delta_u_p(n-1);
     end
+    delta_u_p(1) = delta_u;
 end
 
 end

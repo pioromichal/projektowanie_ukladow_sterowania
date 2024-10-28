@@ -8,8 +8,9 @@ a2 = alfa1*alfa2;
 b1 = (K/(T1-T2))*(T1*(1-alfa1)-T2*(1-alfa2));
 b2 = (K/(T1-T2))*(alfa1*T2*(1-alfa2)-alfa2*T1*(1-alfa1));
 
-y = zeros(kk,1);
-for k=15:kk
+y = zeros(kk+1,1);
+for k=9:kk+1
     y(k) = b1*u(k-Td-1) + b2*u(k-Td-2) - a1*y(k-1) - a2*y(k-2);
 end
+y(1)=[];
 end
