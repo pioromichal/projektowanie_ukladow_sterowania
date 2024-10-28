@@ -19,7 +19,7 @@ b0 = Gz.Numerator{1}(3);
 a1 = Gz.Denominator{1}(2);
 a0 = Gz.Denominator{1}(3);
 
-disp("y(k) = " + num2str(-a1) + "*y(k-1) "+num2str(-a0)+"*y(k-2) + "+ ...
-    num2str(b1)+"*u(k-"+num2str(To+1)+") + "+num2str(b0)+"*u(k-"+num2str(To+2)+");")
+% disp("y(k) = " + num2str(-a1) + "*y(k-1) "+num2str(-a0)+"*y(k-2) + "+ ...
+    % num2str(b1)+"*u(k-"+num2str(To+1)+") + "+num2str(b0)+"*u(k-"+num2str(To+2)+");")
 end
 
