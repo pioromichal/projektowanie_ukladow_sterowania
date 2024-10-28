@@ -27,7 +27,8 @@ kk=600; % koniec symulacji
 umin = 0; umax=100;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
-ys = p3_odpowiedz_skokowa(150); 
+% ys = p3_odpowiedz_skokowa(150); 
+ys = odp_jedn(400);
 
 % Konstrukcja macierzy M
 M = zeros(N,Nu);
@@ -74,16 +75,16 @@ for k=12:kk
         % disp(['du ' num2str(k)]);
     end
 
-    % Ograniczenia
-    if u(k-1)+delta_u < umin
-        delta_u = umin-u(k-1);
-        % u(k) = umin;
-        % disp(['umin ' num2str(k)]);
-    elseif u(k-1)+delta_u > umax
-        delta_u = umax-u(k-1);
-        % u(k) = umax;
-        % disp(['umax ' num2str(k)]);
-    end
+    % % Ograniczenia
+    % if u(k-1)+delta_u < umin
+    %     delta_u = umin-u(k-1);
+    %     % u(k) = umin;
+    %     % disp(['umin ' num2str(k)]);
+    % elseif u(k-1)+delta_u > umax
+    %     delta_u = umax-u(k-1);
+    %     % u(k) = umax;
+    %     % disp(['umax ' num2str(k)]);
+    % end
 
     % Aktualizacja sygnału sterującego
     u(k)=u(k-1)+delta_u;
@@ -94,7 +95,7 @@ for k=12:kk
     end
     delta_u_p(1) = delta_u;
 
-    sendControls ([ 1 , 5 ] , [ 50 , u(k) ]) ; % kolejno W1 i G1
+    sendControls ([ 1 , 5 ] , [ 50 , int64(u(k)) ]) ; % kolejno W1 i G1
 
     % aktualizacja wykresu
     figure(1);
