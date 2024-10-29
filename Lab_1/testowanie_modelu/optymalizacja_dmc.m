@@ -15,9 +15,9 @@ yzad = 35;
 yzad = yzad*ones(kk,1);
 D = 700;
 
-ogr_dol = [5, 5, 0.01];  
-ogr_gor = [400, 20, 20];
-parametry_pocz = [60, 60, 12];
+ogr_dol = [5, 3, 0.001];  
+ogr_gor = [600, 60, 1];
+parametry_pocz = [600, 60, 0.01];
 
 IntCon = [1, 2];  % N i Nu muszą być liczbami całkowitymi
 options = optimoptions('ga', 'Display', 'iter', 'InitialPopulationMatrix', parametry_pocz); % Opcje algorytmu genetycznego
@@ -33,9 +33,9 @@ disp(['N: ', num2str(N)]);
 disp(['Nu: ', num2str(Nu)]);
 disp(['lambda: ', num2str(lambda)]);
 
-% N = 300;
-% Nu = 20;
-% lambda = 0.01;
+% N = 400;
+% Nu = 3;
+% lambda = 0.03;
 
 [y,u]=funkcja_dmc(kk, yzad, N, Nu, D, lambda);
 

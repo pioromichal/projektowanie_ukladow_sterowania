@@ -1,34 +1,35 @@
 clear;
 
-% konfiguracja wykresu
-figure(1);
-h1 = plot(nan, nan, 'DisplayName', 'u'); % Wykres dla pomiaru 1
+% Pierwszy subplot dla wykresu 'u'
+figure('Position', [100, 100, 800, 600]);
+subplot(2, 1, 1);
+h1 = plot(nan, nan, 'DisplayName', 'u');
 xlabel('Czas (s)');
 ylabel('u');
 title('u');
 legend('show');
-figure(2);
-h2 = plot(nan, nan, 'DisplayName', 'y'); % Wykres dla pomiaru 2
+% Drugi subplot dla wykresów 'y' i 'y_zad'
+subplot(2, 1, 2);
+h2 = plot(nan, nan, 'DisplayName', 'y'); 
 hold on;
-h3 = plot(nan, nan, 'DisplayName', 'y_zad'); % Wykres dla pomiaru 3
+h3 = plot(nan, nan, 'DisplayName', 'y_zad'); 
 xlabel('Czas (s)');
 ylabel('y');
 title('y i y_zad');
 legend('show');
 
-yzad = 35;
-yzad = yzad*ones(kk,1);
-N = 17;
-Nu = 20;
-D = 80;
-lambda = 5;
-
 kk=600; % koniec symulacji
 umin = 0; umax=100;
 
+yzad = 35;
+yzad = yzad*ones(kk,1);
+N = 400;
+Nu = 3;
+D = 700;
+lambda = 0.05;
+
 % Odpowiedź skokowa zdyskretyzowanego systemu
-% ys = p3_odpowiedz_skokowa(150); 
-ys = odp_jedn(400);
+ys = odp_jedn(750);
 
 % Konstrukcja macierzy M
 M = zeros(N,Nu);
@@ -66,25 +67,14 @@ for k=12:kk
     % Obliczenie przyrostu sygnału sterującego DMC
     delta_u = ke * e(k) - ku * delta_u_p';
 
-    % Ograniczenia przyrostu
-    if  delta_u < -dumax
-        delta_u = -dumax;
-        % disp(['-du ' num2str(k)]);
-    elseif delta_u > dumax
-        delta_u = dumax;
-        % disp(['du ' num2str(k)]);
+    % Ograniczenia
+    if u(k-1)+delta_u < umin
+        delta_u = umin-u(k-1);
+        % disp(['umin ' num2str(k)]);
+    elseif u(k-1)+delta_u > umax
+        delta_u = umax-u(k-1);
+        % disp(['umax ' num2str(k)]);
     end
-
-    % % Ograniczenia
-    % if u(k-1)+delta_u < umin
-    %     delta_u = umin-u(k-1);
-    %     % u(k) = umin;
-    %     % disp(['umin ' num2str(k)]);
-    % elseif u(k-1)+delta_u > umax
-    %     delta_u = umax-u(k-1);
-    %     % u(k) = umax;
-    %     % disp(['umax ' num2str(k)]);
-    % end
 
     % Aktualizacja sygnału sterującego
     u(k)=u(k-1)+delta_u;
@@ -98,11 +88,9 @@ for k=12:kk
     sendControls ([ 1 , 5 ] , [ 50 , int64(u(k)) ]) ; % kolejno W1 i G1
 
     % aktualizacja wykresu
-    figure(1);
-    set(h1, 'YData', u, 'XData', 1:t);
-    figure(2);
-    set(h2, 'YData', y, 'XData', 1:t);
-    set(h3, 'YData', yzad, 'XData', 1:t);
+    set(h1, 'YData', u(1:k), 'XData', 1:k);
+    set(h2, 'YData', y(1:k), 'XData', 1:k);
+    set(h3, 'YData', yzad(1:k), 'XData', 1:k);
 
     waitForNewIteration () ; % wait for new iteration
 end
@@ -110,10 +98,10 @@ end
 % zapisywanie danych do pliku, tak aby nie nadpisywało starych pomiarow
 i = 1;
 while 1
-    filename1 = ['pomiary/p4_dmc_' num2str(i) '_y.txt'];
-    filename2 = ['pomiary/p4_dmc_' num2str(i) '_u.txt'];
+    filename1 = ['p4_dmc_' num2str(i) '_y'];
+    filename2 = ['p4_dmc_' num2str(i) '_u'];
 
-    if exist(filename1, 'file') == 2 || exist(filename2, 'file') == 2
+    if exist(['pomiary/'  filename1  '.txt'], 'file') == 2 || exist(['pomiary/'  filename2  '.txt'], 'file') == 2
         i = i + 1;
     else
         zapisz_dane_do_txt(y, filename1);

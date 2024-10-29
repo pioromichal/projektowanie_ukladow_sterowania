@@ -19,7 +19,7 @@ yzad = 35;
 yzad = yzad*ones(kk,1);
 
 ogr_dol = [0, 0, 0];  
-ogr_gor = [40, 40, 20];
+ogr_gor = [80, 45, 80];
 
 parametry_optymalne = fmincon(@(parametry) pid_funkcja_kosztu(parametry, kk, yzad), parametry_pocz, [], [], [], [], ogr_dol, ogr_gor);
 % 
@@ -29,6 +29,7 @@ r0=parametry_optymalne(1);
  
 [r2,r1,r0]=p4_pid_strojenie(parametry_optymalne(1),parametry_optymalne(2),parametry_optymalne(3),1);
 
+
 disp('Optymalne parametry PID:');
 % disp(['r0: ', num2str(r0)]);
 % disp(['r1: ', num2str(r1)]);
@@ -37,6 +38,8 @@ disp('Optymalne parametry PID:');
 disp(['K: ', num2str(parametry_optymalne(1))]);
 disp(['Ti: ', num2str(parametry_optymalne(2))]);
 disp(['Td: ', num2str(parametry_optymalne(3))]);
+
+% [r2,r1,r0]=p4_pid_strojenie(20,50,1.3736,1);
 
 [y, u] = funkcja_pid(kk, yzad, r2, r1, r0);
 

@@ -3,27 +3,26 @@ data1 = [];  % Pomiary do pierwszej figury
 data2 = [];  % Pomiary do drugiej figury
 data3 = [];  % Pomiary do drugiej figury
 
-% Tworzenie pierwszej figury do wykresu jednego pomiaru
-figure(1);
-h1 = plot(nan, nan, 'r', 'DisplayName', 'Pomiary 1'); % Wykres dla pomiaru 1
-xlabel('Czas (s)');
-ylabel('Wartości pomiarów');
-title('Pomiar 1');
-legend('show');
-xlim([0 100]);
-ylim([0 1]); % Zakres osi Y dostosowany do wartości losowych z funkcji rand()
+% konfiguracja wykresu
+figure('Position', [100, 100, 800, 600]); % Tworzenie większej figury
 
-% Tworzenie drugiej figury do wykresu dwóch pomiarów
-figure(2);
-h2 = plot(nan, nan, 'b', 'DisplayName', 'Pomiary 2'); % Wykres dla pomiaru 2
-hold on;
-h3 = plot(nan, nan, 'g', 'DisplayName', 'Pomiary 3'); % Wykres dla pomiaru 3
+% Pierwszy subplot dla wykresu 'u'
+subplot(2, 1, 1); % Dwa wiersze, jedna kolumna, pierwszy subplot
+h1 = plot(nan, nan, 'DisplayName', 'u'); % Wykres dla pomiaru 1
 xlabel('Czas (s)');
-ylabel('Wartości pomiarów');
-title('Pomiary 2 i 3');
+ylabel('u');
+title('u');
 legend('show');
-xlim([0 100]);
-ylim([0 1]); % Zakres osi Y dostosowany do wartości losowych z funkcji rand()
+
+% Drugi subplot dla wykresów 'y' i 'y_zad'
+subplot(2, 1, 2); % Dwa wiersze, jedna kolumna, drugi subplot
+h2 = plot(nan, nan, 'DisplayName', 'y'); % Wykres dla pomiaru 2
+hold on;
+h3 = plot(nan, nan, 'DisplayName', 'y_zad'); % Wykres dla pomiaru 3
+xlabel('Czas (s)');
+ylabel('y');
+title('y i y_zad');
+legend('show');
 
 % Pętla, która generuje nowe wartości co 1 sekundę
 for t = 1:100
@@ -37,15 +36,11 @@ for t = 1:100
     data2 = [data2, new_value2];
     data3 = [data3, new_value3];
     
-    % Aktualizacja danych na pierwszym wykresie (figura 1)
-    figure(1);
+    % Aktualizacja wykresu
     set(h1, 'YData', data1, 'XData', 1:t);
-    
-    % Aktualizacja danych na drugim wykresie (figura 2)
-    figure(2);
     set(h2, 'YData', data2, 'XData', 1:t);
     set(h3, 'YData', data3, 'XData', 1:t);
-    
+        
     % Odświeżanie wykresów
     drawnow;
     
