@@ -1,4 +1,6 @@
 clear;
+addpath ('D:\ SerialCommunication ') ; % add a path
+initSerialControl COM4 % initialise com port
 
 % konfiguracja wykresu
 figure('Position', [100, 100, 800, 600]); % Tworzenie większej figury

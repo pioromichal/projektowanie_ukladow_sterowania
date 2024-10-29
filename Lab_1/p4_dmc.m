@@ -1,4 +1,6 @@
 clear;
+addpath ('D:\ SerialCommunication ') ; % add a path
+initSerialControl COM4 % initialise com port
 
 % Pierwszy subplot dla wykresu 'u'
 figure('Position', [100, 100, 800, 600]);
