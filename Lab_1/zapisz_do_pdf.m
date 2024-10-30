@@ -19,7 +19,7 @@ function zapisz_do_pdf(nazwaPliku, UorY, yzad1, yzad2)
     elseif UorY == 1
         % Wykres y
         figure;
-        yzad = [yzad1*ones(450, 1), yzad2*ones(450, 1)];
+        yzad = [yzad1*ones(1, 450), yzad2*ones(1, 450)];
         stairs(sygnal); hold on; stairs(yzad, ':');
         xlabel('Czas [s]');
         ylabel('Sygnal wyjsciowy, zadany');
