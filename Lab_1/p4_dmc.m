@@ -5,30 +5,33 @@ initSerialControl COM4 % initialise com port
 % Pierwszy subplot dla wykresu 'u'
 figure('Position', [100, 100, 800, 600]);
 subplot(2, 1, 1);
-h1 = plot(nan, nan, 'DisplayName', 'u');
+h1 = stairs(nan, nan, 'DisplayName', 'u');
 xlabel('Czas (s)');
 ylabel('u');
 title('u');
 legend('show');
 % Drugi subplot dla wykresów 'y' i 'y_zad'
 subplot(2, 1, 2);
-h2 = plot(nan, nan, 'DisplayName', 'y'); 
+h2 = stairs(nan, nan, 'DisplayName', 'y'); 
 hold on;
-h3 = plot(nan, nan, 'DisplayName', 'y_zad'); 
+h3 = stairs(nan, nan, 'DisplayName', 'y_zad'); 
 xlabel('Czas (s)');
 ylabel('y');
 title('y i y_zad');
 legend('show');
 
-kk=600; % koniec symulacji
+kk=3000; % koniec symulacji
 umin = 0; umax=100;
 
-yzad = 35;
-yzad = yzad*ones(kk,1);
-N = 400;
-Nu = 3;
-D = 700;
-lambda = 0.05;
+yzad(1:450) = 35; yzad(451:900) = 40; yzad(901:kk)=33;
+% N = 400;
+% Nu = 3;
+% D = 700;
+% lambda = 0.05;
+N = 200;
+Nu = 5;
+D = 500;
+lambda = 0.2;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
 ys = odp_jedn(750);
@@ -56,10 +59,11 @@ ku = K1*Mp;
 
 % Warunki początkowe
 u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
+u(1)=25; y(1)=32.68;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 
 % Główna pętla symulacyjna
-for k=12:kk
+for k=2:kk
     % Symulacja obiektu
     y(k) = readMeasurements (1);
 
@@ -93,6 +97,7 @@ for k=12:kk
     set(h1, 'YData', u(1:k), 'XData', 1:k);
     set(h2, 'YData', y(1:k), 'XData', 1:k);
     set(h3, 'YData', yzad(1:k), 'XData', 1:k);
+    drawnow;
 
     waitForNewIteration () ; % wait for new iteration
 end

@@ -22,17 +22,20 @@ ylabel('y');
 title('y i y_zad');
 legend('show');
 
-kk = 1100;
-yzad(1:kk) = 36;
+kk = 3000;
+yzad(1:450) = 35; yzad(451:900) = 40; yzad(901:kk)=33;
 umin = 0; umax=100;
-
-K = 15.3505;
-Ti = 45;
-Td = 1.3602;
+% 
+% K = 15.3505;
+% Ti = 45;
+% Td = 1.3602;
+K = 11;
+Ti = 80;
+Td = 0.3;
 [r2, r1, r0] = p4_pid_strojenie_2(K,Ti,Td,1);
 
 % warunki początkowe
-u(1:2)=25; y(1:2)=36.68; e(1:kk)=0;
+u(1:2)=25; y(1:2)=32.68; e(1:kk)=0;
 u(3:kk)=0; y(3:kk)=0;
 
 
@@ -61,6 +64,7 @@ for k=3:kk
     set(h1, 'YData', u(1:k), 'XData', 1:k);
     set(h2, 'YData', y(1:k), 'XData', 1:k);
     set(h3, 'YData', yzad(1:k), 'XData', 1:k);
+    drawnow;
 
     waitForNewIteration () ; % wait for new iteration
 end
