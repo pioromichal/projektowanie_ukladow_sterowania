@@ -8,12 +8,12 @@ parametry_pocz = [1, 1, 1, 1];
 % ymierz=ones(kk,1);
 
 % kk = 536;
-% u(1:kk)=30;
+% u(1:kk)=1;
 % ymierz = odczyt_danych_z_txt("pomiary/skok_1_30.txt");
 % ymierz = (ymierz-32.81)/5;
 
 % kk = 482;
-% u(1:kk)=40;
+% u(1:kk)=1;
 % ymierz = odczyt_danych_z_txt("pomiary/skok_2_40.txt");
 % ymierz = (ymierz-33)/15;
 
@@ -21,6 +21,11 @@ kk = 460;
 u(1:kk)=1;
 ymierz = odczyt_danych_z_txt("pomiary/skok_3_35.txt");
 ymierz = (ymierz-32.68)/10;
+
+% kk = 440;
+% u(1:kk)=1;
+% ymierz = odczyt_danych_z_txt("pomiary/skok_4_45.txt");
+% ymierz = (ymierz-32.62)/20;
 
 
 ogr_dol = [1, 1, 0, 0];  
