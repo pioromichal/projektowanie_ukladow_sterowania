@@ -6,29 +6,27 @@ function zapisz_do_pdf(nazwaPliku, UorY, yzad1, yzad2)
     dane = load(nazwaPliku);
 
     t = dane(:, 1);
-    sygnal = dane(:, 2);
+    sygnal = int64(dane(:, 2));
 
     if UorY == 0
         % Wykres u
         figure;
-        plot(t, sygnal);
+        stairs(sygnal);
         xlabel('Czas [s]');
         ylabel('Sygnal sterujacy');
         title('Wykres sygnalu sterujacego');
         grid on;
-        axis tight;
     elseif UorY == 1
+        % Wykres y
         figure;
-        yzad = [yzad1*ones(450), yzad2*ones(450)];
-        plot(t, sygnal, t, yzad);
+        yzad = [yzad1*ones(450, 1), yzad2*ones(450, 1)];
+        stairs(sygnal); hold on; stairs(yzad, ':');
         xlabel('Czas [s]');
         ylabel('Sygnal wyjsciowy, zadany');
         legend('y', 'y_{zad}', 'Location', 'northwest')
         title('Wykres sygnalu wyjsciowego');
         grid on;
-        axis tight;
     end
-
 
     % Zapisanie wykresu do pliku PDF bez marginesów
     nazwaPDF = strcat(nazwaPliku(1:end-4), '.pdf');
