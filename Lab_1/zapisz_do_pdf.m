@@ -23,7 +23,7 @@ function zapisz_do_pdf(nazwaPliku, UorY, yzad1, yzad2)
         plot(t, sygnal, t, yzad);
         xlabel('Czas [s]');
         ylabel('Sygnal wyjsciowy, zadany');
-        legend('y', 'y_{zad}')
+        legend('y', 'y_{zad}', 'Location','northeast')
         title('Wykres sygnalu wyjsciowego');
         grid on;
         axis tight;
