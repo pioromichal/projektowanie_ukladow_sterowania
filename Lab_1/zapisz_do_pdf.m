@@ -6,10 +6,11 @@ function zapisz_do_pdf(nazwaPliku, UorY, yzad1, yzad2)
     dane = load(nazwaPliku);
 
     t = dane(:, 1);
-    sygnal = int64(dane(:, 2));
+    sygnal = dane(:, 2);
 
     if UorY == 0
         % Wykres u
+        sygnal = int64(dane(:, 2));
         figure;
         stairs(sygnal);
         xlabel('Czas [s]');
@@ -20,7 +21,7 @@ function zapisz_do_pdf(nazwaPliku, UorY, yzad1, yzad2)
         % Wykres y
         figure;
         yzad = [yzad1*ones(1, 450), yzad2*ones(1, 450)];
-        stairs(sygnal); hold on; stairs(yzad, ':');
+        stairs(t, sygnal); hold on; stairs(yzad, ':');
         xlabel('Czas [s]');
         ylabel('Sygnal wyjsciowy, zadany');
         legend('y', 'y_{zad}', 'Location', 'northwest')
