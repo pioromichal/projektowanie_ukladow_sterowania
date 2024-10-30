@@ -63,22 +63,22 @@ legend('Model', 'Pomiar');
 E = (ymierz-y)'*(ymierz-y);
 disp(['E: ', num2str(E)]);
 
-
-% Definicja transmitancji
-num = K;             % Licznik transmitancji
-den = [T1*T2, T1 + T2, 1];  % Mianownik transmitancji: (T1*s + 1)(T2*s + 1)
-sys = tf(num, den);  % Tworzenie obiektu transmitancji bez opóźnienia
-
-% Aproksymacja Padé dla opóźnienia
-delay = pade(Td, 1); % Aproksymacja Padé pierwszego rzędu dla opóźnienia Td
-
-% Połączenie transmitancji z opóźnieniem
-sys_delayed = sys * delay;
-
-figure;
-% Symulacja odpowiedzi skokowej
-step(sys);
-title('Odpowiedź skokowa modelu dwuinercyjnego z opóźnieniem');
-xlabel('Czas (s)');
-ylabel('Odpowiedź skokowa');
-grid on;
+% 
+% % Definicja transmitancji
+% num = K;             % Licznik transmitancji
+% den = [T1*T2, T1 + T2, 1];  % Mianownik transmitancji: (T1*s + 1)(T2*s + 1)
+% sys = tf(num, den);  % Tworzenie obiektu transmitancji bez opóźnienia
+% 
+% % Aproksymacja Padé dla opóźnienia
+% delay = pade(Td, 1); % Aproksymacja Padé pierwszego rzędu dla opóźnienia Td
+% 
+% % Połączenie transmitancji z opóźnieniem
+% sys_delayed = sys * delay;
+% 
+% figure;
+% % Symulacja odpowiedzi skokowej
+% step(sys);
+% title('Odpowiedź skokowa modelu dwuinercyjnego z opóźnieniem');
+% xlabel('Czas (s)');
+% ylabel('Odpowiedź skokowa');
+% grid on;

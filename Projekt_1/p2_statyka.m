@@ -15,7 +15,16 @@ for i=1:length(us)
     ys(i) = y(kk);
 end
 
-figure; plot(us,ys)
-ylabel('y'); xlabel('u'); grid on; grid minor;
+% Wykres charakterystyki statycznej
+plot(us, ys); % Wykres
+ylabel('Wartość wyjściowa'); % Etykieta osi Y
+xlabel('Wartość wejściowa'); % Etykieta osi X
+title('Charakterystyka statyczna'); % Tytuł wykresu
+grid on; 
+grid minor;
 
+% Zmień kropki na przecinki na osiach
+zamien_kropki(); 
+exportgraphics(gcf, 'rysunki/projekt/Zad2/charakterystyka_statystyczna.pdf', 'ContentType', 'vector');
+close;
 % K=2

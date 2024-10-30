@@ -12,20 +12,21 @@ function zapisz_do_pdf(nazwaPliku, UorY, yzad1, yzad2)
         % Wykres u
         sygnal = int64(dane(:, 2));
         figure;
-        stairs(sygnal);
+        stairs(sygnal,'LineWidth', 0.6);
         xlabel('Czas [s]');
-        ylabel('Sygnal sterujacy');
-        title('Wykres sygnalu sterujacego');
+        ylabel('Sygnał sterujący');
+        title('Wykres sygnału sterującego');
         grid on;
     elseif UorY == 1
         % Wykres y
         figure;
         yzad = [yzad1*ones(1, 450), yzad2*ones(1, 450)];
-        stairs(t, sygnal); hold on; stairs(yzad, ':');
+        stairs(t, sygnal,'LineWidth', 0.6); 
+        hold on; stairs(yzad, '--','LineWidth', 0.6);
         xlabel('Czas [s]');
-        ylabel('Sygnal wyjsciowy, zadany');
+        ylabel('Sygnał wyjściowy, zadany');
         legend('y', 'y_{zad}', 'Location', 'northwest')
-        title('Wykres sygnalu wyjsciowego');
+        title('Wykres sygnału wyjściowego');
         grid on;
     end
 
