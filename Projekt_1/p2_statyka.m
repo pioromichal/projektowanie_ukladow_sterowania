@@ -17,8 +17,8 @@ end
 
 % Wykres charakterystyki statycznej
 plot(us, ys); % Wykres
-ylabel('Wartość wyjściowa'); % Etykieta osi Y
-xlabel('Wartość wejściowa'); % Etykieta osi X
+ylabel('y'); % Etykieta osi Y
+xlabel('u'); % Etykieta osi X
 title('Charakterystyka statyczna'); % Tytuł wykresu
 grid on; 
 grid minor;

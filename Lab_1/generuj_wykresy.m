@@ -1,4 +1,6 @@
 set(0, 'DefaultAxesFontName', 'Arial');
+set(0, 'DefaultTextFontName', 'Arial');
+
 zapisz_do_pdf('pomiary/dmc1u_prep.txt', 0, 35, 40);
 zapisz_do_pdf('pomiary/dmc2u_prep.txt', 0, 35, 40);
 zapisz_do_pdf('pomiary/dmc2y_prep.txt', 1, 35, 40);

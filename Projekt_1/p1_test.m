@@ -13,22 +13,22 @@ end
 figure;
 
 % Tytuł główny
-sgtitle('Sprawdzenie poprawności punktu pracy', 'FontSize', 14); % Tytuł nad oboma wykresami
+% sgtitle('Sprawdzenie poprawności punktu pracy', 'FontSize', 14); % Tytuł nad oboma wykresami
 
 % Pierwszy wykres
 subplot(2, 1, 1); % 2 wiersze, 1 kolumna, pierwszy wykres
 stairs(time, u);
 grid on; grid minor;
-xlabel('Czas [s]');
-ylabel('Sygnał wejściowy');
+xlabel('t [s]');
+ylabel('u');
 title('Sygnał wejściowy', 'FontSize', 12); % Mały tytuł dla pierwszego wykresu
 
 % Drugi wykres
 subplot(2, 1, 2); % 2 wiersze, 1 kolumna, drugi wykres
 stairs(time, y);
 grid on; grid minor;
-xlabel('Czas [s]');
-ylabel('Sygnał wyjściowy');
+xlabel('t [s]');
+ylabel('y');
 title('Sygnał wyjściowy', 'FontSize', 12); % Mały tytuł dla drugiego wykresu
 
 % Zapis wykresu jako plik PDF

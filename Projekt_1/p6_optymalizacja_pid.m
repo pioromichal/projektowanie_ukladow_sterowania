@@ -10,14 +10,16 @@ end
 
 clear;
 parametry_pocz = [0.0, 0.0, 0.0];
-kk = 600;
+kk = 1000;
 yzad = 2.5;
 yzad = yzad*ones(kk,1);
 
 ogr_dol = [-1, -1, -1];  
 ogr_gor = [1, 1, 1];
 
-parametry_optymalne = fmincon(@(parametry) pid_funkcja_kosztu(parametry, kk, yzad), parametry_pocz, [], [], [], [], ogr_dol, ogr_gor);
+parametry_optymalne = fmincon(@(parametry) ...
+    pid_funkcja_kosztu(parametry, kk, yzad), ...
+    parametry_pocz, [], [], [], [], ogr_dol, ogr_gor);
 
 r2=parametry_optymalne(3);
 r1=parametry_optymalne(2);

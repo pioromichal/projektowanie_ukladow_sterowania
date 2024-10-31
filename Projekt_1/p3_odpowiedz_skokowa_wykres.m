@@ -13,8 +13,8 @@ figure;
 stairs(time, y); % Wykres z uwzględnieniem czasu
 
 % Etykiety osi
-ylabel('Sygnał wyjściowy'); % Etykieta osi Y
-xlabel('Czas [s]'); % Etykieta osi X
+ylabel('y'); % Etykieta osi Y
+xlabel('t [s]'); % Etykieta osi X
 title('Sygnał wyjściowy'); % Tytuł wykresu
 
 grid on; 

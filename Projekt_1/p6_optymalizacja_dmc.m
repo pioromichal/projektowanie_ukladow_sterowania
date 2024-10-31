@@ -1,7 +1,7 @@
 clear;
 function E = dmc_funkcja_kosztu(parametry, kk, yzad, D)
-    N = round(parametry(1)); % Zaokrąglamy, bo N musi być całkowite
-    Nu = round(parametry(2)); % Zaokrąglamy, bo Nu musi być całkowite
+    N = round(parametry(1));
+    Nu = round(parametry(2));
     lambda = parametry(3);
 
     [y, ~] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda);
@@ -13,16 +13,17 @@ parametry_pocz = [30, 30, 1];
 kk = 300;
 yzad = 2.5;
 yzad = yzad * ones(kk, 1);
-D = 200;
+D = 130;
 
 ogr_dol = [1, 1, 0.0];  
 ogr_gor = [60, 100, 50];
 
-% Używamy algorytmu genetycznego
-IntCon = [1, 2];  % N i Nu muszą być liczbami całkowitymi
-options = optimoptions('ga', 'Display', 'iter'); % Opcje algorytmu genetycznego
+IntCon = [1, 2];
+options = optimoptions('ga', 'Display', 'iter');
 
-parametry_optymalne = ga(@(parametry) dmc_funkcja_kosztu(parametry, kk, yzad, D), 3, [], [], [], [], ogr_dol, ogr_gor, [], IntCon, options);
+parametry_optymalne = ga(@(parametry) ...
+    dmc_funkcja_kosztu(parametry, kk, yzad, D), ...
+    3, [], [], [], [], ogr_dol, ogr_gor, [], IntCon, options);
 
 N=parametry_optymalne(1);
 Nu=parametry_optymalne(2);

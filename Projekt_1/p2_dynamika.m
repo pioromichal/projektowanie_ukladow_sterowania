@@ -15,13 +15,13 @@ end
 figure;
 
 % Tytuł główny
-sgtitle('Wyniki symulacji', 'FontSize', 14); % Główny tytuł nad oboma wykresami
+% sgtitle('Wyniki symulacji', 'FontSize', 14); % Główny tytuł nad oboma wykresami
 
 % Pierwszy wykres
 subplot(2, 1, 1); % 2 wiersze, 1 kolumna, pierwszy wykres
 stairs(time, u); % Użycie zmiennej time
-ylabel('Sygnał wejściowy (u)'); 
-xlabel('Czas [s]'); 
+ylabel('u'); 
+xlabel('t [s]'); 
 grid on; 
 grid minor;
 title('Sygnał wejściowy', 'FontSize', 12); % Mały tytuł dla pierwszego wykresu
@@ -30,8 +30,8 @@ zamien_kropki(); % Ustaw etykiety osi
 % Drugi wykres
 subplot(2, 1, 2); % 2 wiersze, 1 kolumna, drugi wykres
 stairs(time, y); % Użycie zmiennej time
-xlabel('Czas [s]'); 
-ylabel('Sygnał wyjściowy (y)'); 
+xlabel('t [s]'); 
+ylabel('y'); 
 grid on; 
 grid minor;
 title('Sygnał wyjściowy', 'FontSize', 12); % Mały tytuł dla drugiego wykresu
