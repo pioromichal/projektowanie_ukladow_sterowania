@@ -18,7 +18,7 @@ zapisz_do_pdf('pomiary/pid1y_prep.txt', 1, 35, 40);
 p2_statyka;
 
 figure;
-stairs(odczyt_danych_z_txt("pomiary/test_1.txt"));
+stairs(odczyt_danych_z_txt("pomiary/test_1.txt")+0.1);
 xlabel('Czas [s]');
 ylabel('Sygnał wyjściowy');
 title('Wyznaczenie wartości wyjścia w punkcie pracy');
