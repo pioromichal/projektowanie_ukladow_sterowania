@@ -5,7 +5,7 @@ umin = 0.9; umax=1.5;
 dumax = 0.05;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
-ys = p3_odpowiedz_skokowa(250);
+ys = p3_odpowiedz_skokowa(D);
 
 % Konstrukcja macierzy M
 M = zeros(N,Nu);
