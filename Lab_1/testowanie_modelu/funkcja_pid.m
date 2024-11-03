@@ -19,7 +19,7 @@ u(1:11)=25; y(1:11)=32.68; e(1:11)=0;
 % główna pętla symulacyjna
 for k=12:kk 
     % symulacja obiektu
-    y(k) = Ypp -a1*(y(k-1)-Ypp)-a0*(y(k-2)-Ypp) + 1*(b1*(u(k-10)-Upp) + b0*(u(k-11)-Upp));
+    y(k) = Ypp -a1*(y(k-1)-Ypp)-a0*(y(k-2)-Ypp) + 1*(b1*(u(k-7)-Upp) + b0*(u(k-8)-Upp));
 
     % uchyb regulacji
     e(k)=yzad(k)-y(k);

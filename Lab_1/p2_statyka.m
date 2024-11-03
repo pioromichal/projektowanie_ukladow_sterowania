@@ -1,3 +1,6 @@
+set(0, 'DefaultAxesFontName', 'Arial');
+set(0, 'DefaultTextFontName', 'Arial');
+
 d = odczyt_danych_z_txt("pomiary/skok_1_30.txt");
 c = odczyt_danych_z_txt("pomiary/skok_3_35.txt");
 b = odczyt_danych_z_txt("pomiary/skok_2_40.txt");
