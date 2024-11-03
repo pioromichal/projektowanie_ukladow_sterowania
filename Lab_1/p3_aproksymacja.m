@@ -1,6 +1,4 @@
 clear;
-parametry_pocz = [1, 1, 1, 1];
-
 
 % zaladowac prawdziwe ymierz i umierz
 
@@ -27,7 +25,7 @@ ymierz = (ymierz-32.68)/10;
 % ymierz = odczyt_danych_z_txt("pomiary/skok_4_45.txt");
 % ymierz = (ymierz-32.62)/20;
 
-
+parametry_pocz = [1, 1, 1, 1];
 ogr_dol = [1, 1, 0, 0];  
 ogr_gor = [120, 120, 50, 12];
 
@@ -35,7 +33,9 @@ ogr_gor = [120, 120, 50, 12];
 IntCon = 4;  % Td musi być liczbą całkowitą
 options = optimoptions('ga', 'Display', 'iter'); % Opcje algorytmu genetycznego
 
-parametry_optymalne = ga(@(parametry) p3_funkcja_kosztu(parametry, kk, u, ymierz), 4, [], [], [], [], ogr_dol, ogr_gor, [], IntCon, options);
+parametry_optymalne = ga(@(parametry) ...
+    p3_funkcja_kosztu(parametry, kk, u, ymierz), 4, [], [], [], [], ...
+    ogr_dol, ogr_gor, [], IntCon, options);
 
 T1 = parametry_optymalne(1);
 T2 = parametry_optymalne(2);
