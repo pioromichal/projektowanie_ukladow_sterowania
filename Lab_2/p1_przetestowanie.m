@@ -1,11 +1,11 @@
 clear T1;
 
-addpath ('D:\ SerialCommunication ') ; % add a path
+addpath ('D:\SerialCommunication') ; % add a path
 initSerialControl COM4 % initialise com port
 
 % konfiguracja wykresu
 figure(1);
-h1 = plot(nan, nan, 'r', 'DisplayName', 'Pomiary 1'); % Wykres dla pomiaru 1
+h1 = stairs(nan, nan, 'r', 'DisplayName', 'Pomiary 1'); % Wykres dla pomiaru 1
 xlabel('Czas (s)');
 ylabel('Wartości pomiarów');
 title('Pomiar 1');
