@@ -19,7 +19,7 @@ for t = 1:1000
     disp ( measurements ) ; % process measurements
 
     %sending new values of control signals
-    sendControls ([ 1 , 5 ] , [ 50 , 25 ]) ; % kolejno W1 i G1
+    sendControls ([ 1 , 5 ] , [ 0 , 0 ]) ; % kolejno W1 i G1
 
     % aktualizacja wykresu
     set(h1, 'YData', T1, 'XData', 1:t);
