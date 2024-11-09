@@ -37,7 +37,9 @@ ku = K1*Mp;
 kz = K(1, :) * Mpz;
 
 % Inicjalizacja
-u(1:kk)=0; y(1:kk)=0; e(1:kk)=0; z(1:168)=0; z(169:kk)=1;
+u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
+% z(1:168)=0; z(169:kk)=1;
+z(1:168)=0; z(169:kk)=sin(-2*pi:(4*pi/(kk-169)):2*pi);
 
 % Warunki początkowe
 u(1:7)=0; y(1:7)=0; z(1:7)=0;

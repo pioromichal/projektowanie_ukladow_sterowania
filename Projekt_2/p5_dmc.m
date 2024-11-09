@@ -20,11 +20,11 @@ lambda = 1;
 
 % DMC optymalny
 
-N = 16;
+N = 8;
 Nu = 1;
 D = 192;
 Dz = 194;
-lambda = 5.5479e-05;
+lambda = 0.0023567;
 
 [y, u] = p5_funkcja_dmc(kk, yzad, N, Nu, D, lambda, Dz);
 

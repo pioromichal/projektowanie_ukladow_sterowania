@@ -11,22 +11,20 @@ yzad = yzad*ones(kk,1);
 N = 17;
 Nu = 10;
 D = 192;
-Dz = 194;
 lambda = 1;
 
 
-[yp, up] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda, Dz);
+[yp, up] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda);
 
 
 % DMC optymalny
 
-N = 16;
+N = 8;
 Nu = 1;
 D = 192;
-Dz = 194;
-lambda = 5.5479e-05;
+lambda = 0.0023567;
 
-[y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda, Dz);
+[y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda);
 
 % wyniki symulacji
 figure; 

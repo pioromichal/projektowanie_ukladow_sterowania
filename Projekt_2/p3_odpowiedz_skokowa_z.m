@@ -1,8 +1,8 @@
-function [y,u] = p3_odpowiedz_skokowa_z(kk)
-kk = kk +1;
+function [y,z] = p3_odpowiedz_skokowa_z(kk)
+kk = kk +7;
 Ypp=0; Zpp=0; dZ=1;
 
-z(1:kk)=Zpp+dZ; y(1:kk)=0; u(1:kk)=0;
+z(1:7)=0; z(8:kk)=Zpp+dZ; y(1:kk)=0; u(1:kk)=0;
 
 % główna pętla symulacyjna
 for k=8:kk
@@ -11,8 +11,8 @@ for k=8:kk
 end
 
 %normalizacja odpowiedzi skokowej
-u=(u-Zpp)/dZ;
+z=(z-Zpp)/dZ;
 y=(y-Ypp)/dZ;
-u(1)=[];y(1)=[];
+z(1:7)=[];y(1:7)=[];
 end
 

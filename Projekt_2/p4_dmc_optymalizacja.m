@@ -14,7 +14,7 @@ IntCon = [1, 2];
 options = optimoptions('ga', 'Display', 'iter');
 
 parametry_optymalne = ga(@(parametry) ...
-    dmc_funkcja_kosztu(parametry, kk, yzad, D), ...
+    dmc_funkcja_kosztu(parametry, kk, yzad, D, Dz), ...
     3, [], [], [], [], ogr_dol, ogr_gor, [], IntCon, options);
 
 N=parametry_optymalne(1);
@@ -26,7 +26,7 @@ disp(['N: ', num2str(N)]);
 disp(['Nu: ', num2str(Nu)]);
 disp(['lambda: ', num2str(lambda)]);
 
-[y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda);
+[y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda, Dz);
 
 % wyniki symulacji
 figure; stairs(u);
@@ -41,7 +41,7 @@ legend('Wyjście', 'Wartość zadana');
 E = (yzad-y')'*(yzad-y');
 disp(['E: ', num2str(E)]);
 
-function E = dmc_funkcja_kosztu(parametry, kk, yzad, D)
+function E = dmc_funkcja_kosztu(parametry, kk, yzad, D, Dz)
     N = round(parametry(1));
     Nu = round(parametry(2));
     lambda = parametry(3);
