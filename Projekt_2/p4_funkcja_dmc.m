@@ -1,5 +1,6 @@
-function [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda)
-
+function [y, u] = p4_funkcja_dmc(kk, yzad, N, Nu, D, lambda, z)
+k_shift=7;
+kk=kk+k_shift;
 % Odpowiedź skokowa zdyskretyzowanego systemu
 ys = p3_odpowiedz_skokowa_u(D);
 
@@ -26,16 +27,14 @@ ku = K1*Mp;
 
 % Inicjalizacja
 u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
-% z(1:kk)=0;
-z(1:168)=0; z(169:kk)=sin(-2*pi:(4*pi/(kk-169)):2*pi);
-% z(1:168)=0;z(169:kk)=1;
+yzad = yzad*ones(kk,1);
 
 % Warunki początkowe
 u(1:7)=0; y(1:7)=0; z(1:7)=0;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 
 % Główna pętla symulacyjna
-for k=8:kk
+for k=k_shift+1:kk
     % Symulacja obiektu
     y(k) = symulacja_obiektu15y_p2(u(k-6), u(k-7), z(k-3), z(k-4), y(k-1), y(k-2));
 
@@ -58,6 +57,6 @@ for k=8:kk
 
     delta_u_p(1) = delta_u;
 end
-
+y(1:k_shift)=[]; u(1:k_shift)=[];
 end
 

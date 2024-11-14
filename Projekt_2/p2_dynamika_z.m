@@ -1,6 +1,6 @@
 clear; close all;
 
-y(1:7)=0; e(1:7)=0; 
+y(1:7)=0;
 kk=1200; % koniec symulacji
 Tp=0.5; u(1:kk)=0;
 time=0:Tp:Tp*(kk-1);
@@ -10,7 +10,8 @@ z(651:850)=1; z(851:1050)=1.4; z(1051:1200)=0.8;
 % główna pętla symulacyjna
 for k=8:kk 
     % symulacja obiektu
-    y(k) = symulacja_obiektu15y_p2(u(k-6), u(k-7), z(k-3), z(k-4), y(k-1), y(k-2));
+    y(k) = symulacja_obiektu15y_p2(u(k-6), u(k-7), ...
+        z(k-3), z(k-4), y(k-1), y(k-2));
 end
 
 figure;
@@ -25,8 +26,8 @@ ylabel('z');
 xlabel('t [s]'); 
 grid on; 
 grid minor;
-title('Zakłócenia', 'FontSize', 12); % Mały tytuł dla pierwszego wykresu
-% zamien_kropki(); % Ustaw etykiety osi
+title('Sygnał zakłócający', 'FontSize', 12); % Mały tytuł dla pierwszego wykresu
+zamien_kropki(); 
 
 % Drugi wykres
 subplot(2, 1, 2); % 2 wiersze, 1 kolumna, drugi wykres
@@ -36,10 +37,10 @@ ylabel('y');
 grid on; 
 grid minor;
 title('Sygnał wyjściowy', 'FontSize', 12); % Mały tytuł dla drugiego wykresu
-% zamien_kropki(); % Ustaw etykiety osi
+zamien_kropki(); 
 
 % Zapis wykresu jako plik PDF
-% exportgraphics(gcf, 'rysunki/projekt/Zad2/odp_skokowe.pdf', 'ContentType', 'vector');
-% close;
+exportgraphics(gcf, 'wykresy/z2_odp_skokowe_z.pdf', 'ContentType', 'vector');
+close;
 
 % K = 1.1

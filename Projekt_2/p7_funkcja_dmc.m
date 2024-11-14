@@ -1,4 +1,4 @@
-function [y, u] = p5_funkcja_dmc(kk, yzad, N, Nu, D, lambda, Dz, z)
+function [y, u, z_pom] = p7_funkcja_dmc(kk, yzad, N, Nu, D, lambda, Dz, z, szum_val)
 k_shift=7;
 kk=kk+k_shift;
 % Odpowiedź skokowa zdyskretyzowanego systemu
@@ -42,6 +42,11 @@ u(1:7)=0; y(1:7)=0; z(1:7)=0;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 delta_z_p(1:Dz)=0; % Przeszłe przyrosty z
 yzad = yzad*ones(kk,1);
+% Dodanie szumu do pomiaru z
+z_pom=z;
+for i=1:kk
+    z_pom(i)=z_pom(i) + szum_val*(2*rand-1);
+end
 
 % Główna pętla symulacyjna
 for k=k_shift+1:kk
@@ -52,7 +57,8 @@ for k=k_shift+1:kk
     e(k)=yzad(k)-y(k);
     disp(k);
     % Zmiana zakłócenia
-    delta_z_p(1) = z(k) - z(k-1);
+    
+    delta_z_p(1) = z_pom(k) - z_pom(k-1);
 
     % Obliczenie przyrostu sygnału sterującego DMC
     delta_u = ke * e(k) - ku * delta_u_p' - kz * delta_z_p';
@@ -71,6 +77,6 @@ for k=k_shift+1:kk
     end
     delta_u_p(1) = delta_u;
 end
-y(1:k_shift)=[]; u(1:k_shift)=[];
+y(1:k_shift)=[]; u(1:k_shift)=[]; z_pom(1:k_shift)=[];
 end
 

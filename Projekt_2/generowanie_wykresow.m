@@ -1,0 +1,12 @@
+set(0, 'DefaultAxesFontName', 'Arial');
+set(0, 'DefaultTextFontName', 'Arial');
+p1_test;
+p2_dynamika_u;
+p2_dynamika_z;
+p2_statyka;
+p3_odpowiedz_skokowa_u_wykres;
+p3_odpowiedz_skokowa_z_wykres;
+p4_dmc;
+p5_dmc;
+p6_dmc;
+p7_dmc_szum_z;
