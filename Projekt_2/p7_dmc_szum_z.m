@@ -9,10 +9,14 @@ yzad = 1;
 z(1:kk+7)=0;
 
 % parametry DMC
-N = 8;
-Nu = 1;
+% N = 8;
+% Nu = 1;
+% D = 192;
+% lambda = 0.0023567;
+N = 20;
+Nu = 3;
 D = 192;
-lambda = 0.0023567;
+lambda = 0.5;
 Dz = 35;
 
 % Symulacja dla z_szum_max_val=0.1

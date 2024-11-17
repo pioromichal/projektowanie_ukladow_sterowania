@@ -8,10 +8,14 @@ k_z_step=51;
 yzad = 1;
 
 % parametry DMC
-N = 8;
-Nu = 1;
+% N = 8;
+% Nu = 1;
+% D = 192;
+% lambda = 0.0023567;
+N = 20;
+Nu = 3;
 D = 192;
-lambda = 0.0023567;
+lambda = 0.5;
 Dz = 35;
 
 % Symulacja dla maks sin = 1

@@ -43,5 +43,5 @@ zlabel('y');
 grid on;
 grid minor;
 shading interp;
-exportgraphics(gcf, 'Wykresy/Z2_statyka.pdf', 'ContentType', 'vector');
+exportgraphics(gcf, 'Wykresy/Z2_statyka.pdf', 'ContentType', 'image');
 close;

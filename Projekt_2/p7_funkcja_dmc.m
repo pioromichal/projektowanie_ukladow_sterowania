@@ -56,8 +56,8 @@ for k=k_shift+1:kk
     % Uchyb regulacji
     e(k)=yzad(k)-y(k);
     disp(k);
-    % Zmiana zakłócenia
-    
+
+    % Zmiana zakłócenia    
     delta_z_p(1) = z_pom(k) - z_pom(k-1);
 
     % Obliczenie przyrostu sygnału sterującego DMC

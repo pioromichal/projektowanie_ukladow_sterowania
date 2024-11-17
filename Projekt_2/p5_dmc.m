@@ -7,14 +7,18 @@ time=0:Tp:Tp*(kk-1);
 yzad = 1;
 
 % parametry DMC poza Dz
-N = 8;
-Nu = 1;
+% N = 8;
+% Nu = 1;
+% D = 192;
+% lambda = 0.0023567;
+N = 20;
+Nu = 3;
 D = 192;
-lambda = 0.0023567;
+lambda = 0.5;
 
 % testowane choryzonty dynamiki zakłoćeń Dz
 
-Dz = [10 20 35];
+Dz = [25 35 40];
 
 % Symulacja dla z=1
 z(1:50)=0;z(51:kk+7)=1;
