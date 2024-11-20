@@ -28,7 +28,7 @@ N = 200;
 Nu = 5;
 D = 500;
 lambda = 0.2;
-Dz = 100;
+Dz = 500;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
 ys = odp_jedn(750);
@@ -68,7 +68,7 @@ kz = K1 * Mpz;
 
 % Warunki początkowe
 u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
-u(1)=25; y(1)=34.4; % y(1)=32.68;
+u(1)=25; y(1)=32.68; %y(1)=34.4; 
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 delta_z_p(1:Dz)=0;
 z(1:300)=0; z(301:600)=20; z(601:kk)=30;

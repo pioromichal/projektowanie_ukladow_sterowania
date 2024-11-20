@@ -59,7 +59,7 @@ ku = K1*Mp;
 
 % Warunki początkowe
 u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
-u(1)=25; y(1)=34.4; % y(1)=32.68;
+u(1)=25; y(1)=32.87;% y(1)=34.4; % y(1)=32.68;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 z(1:300)=0; z(301:600)=20; z(601:kk)=30;
 % Główna pętla symulacyjna

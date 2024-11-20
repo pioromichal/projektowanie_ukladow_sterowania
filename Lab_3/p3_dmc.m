@@ -8,7 +8,7 @@ wykresy_online_konfiguracja;
 kk=3000; % koniec symulacji
 umin = 0; umax=100;
 
-Tpp = 000; % TODO Tu uzupełnić Tpp z zad 1
+Tpp = 35.93; % TODO Tu uzupełnić Tpp z zad 1
 
 % TODO
 % sprawdzić czy długości są dobre, na oko powinny się zgadzać
@@ -20,7 +20,7 @@ yzad(601:900) = Tpp+15; yzad(901:kk) = Tpp;
 % nastawy DMC są takie jak najlepsze z lab 1
 N = 200;
 Nu = 5;
-D = 700;
+D = 500;
 lambda = 0.2;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
@@ -33,7 +33,7 @@ u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 
 % Warunki początkowe
-u(1)=25; y(1)=32.68; % TODO zaktualizować pp
+u(1)=25; y(1)=35.93; % TODO zaktualizować pp
 
 % Główna pętla symulacyjna
 for k=2:kk
@@ -63,7 +63,7 @@ for k=2:kk
     delta_u_p(1) = delta_u;
 
     sendControls (1, 50) ; % W1
-    sendNonlinearControls(int64(u(k))); % G1
+    sendNonlinearControls(u(k)); % G1
 
     wykresy_online_aktualizacja;
 
