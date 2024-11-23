@@ -1,4 +1,4 @@
-function y = p3_model(T1,T2,K,Td,kk,u)
+function y = p3_model(T1,T2,K,Td,kk)
 alfa1 = exp(-1/T1);
 alfa2 = exp(-1/T2);
 
@@ -8,7 +8,7 @@ a2 = alfa1*alfa2;
 b1 = (K/(T1-T2))*(T1*(1-alfa1)-T2*(1-alfa2));
 b2 = (K/(T1-T2))*(alfa1*T2*(1-alfa2)-alfa2*T1*(1-alfa1));
 
-kk = kk+Td;
+kk = kk+Td+3;
 
 u(1:Td+2)=0; u(Td+3:kk)=1;
 
