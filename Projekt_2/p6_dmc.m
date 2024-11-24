@@ -34,7 +34,7 @@ legend('u: DMC bez pomiaru z', 'u: DMC z pomiarem z', 'z', 'Location','northwest
 title('Sygnały wejściowe'); % Tytuł wykresu
 zamien_kropki();
 exportgraphics(gcf, 'Wykresy/Z6_DMC_u_m.pdf', 'ContentType', 'vector');
-close;
+% close;
 
 figure; 
 stairs(time, y, '-'); hold on;
@@ -45,7 +45,7 @@ legend('y: DMC bez pomiaru z', 'y: DMC z pomiarem z', 'y_{zad}', 'Location','nor
 title('Sygnał wyjściowy'); % Tytuł wykresu
 zamien_kropki(); 
 exportgraphics(gcf, 'Wykresy/Z6_DMC_y_m.pdf', 'ContentType', 'vector');
-close;
+% close;
 
 E = (yzad-y')'*(yzad-y');
 Ez = (yzad-yz')'*(yzad-yz');
@@ -69,7 +69,7 @@ legend('u: DMC bez pomiaru z', 'u: DMC z pomiarem z', 'z', 'Location','northwest
 title('Sygnały wejściowe'); % Tytuł wykresu
 zamien_kropki();
 exportgraphics(gcf, 'Wykresy/Z6_DMC_u_d.pdf', 'ContentType', 'vector');
-close;
+% close;
 
 figure; 
 stairs(time, y, '-'); hold on;
@@ -80,7 +80,7 @@ legend('y: DMC bez pomiaru z', 'y: DMC z pomiarem z', 'y_{zad}', 'Location','sou
 title('Sygnał wyjściowy'); % Tytuł wykresu
 zamien_kropki(); 
 exportgraphics(gcf, 'Wykresy/Z6_DMC_y_d.pdf', 'ContentType', 'vector');
-close;
+% close;
 
 E = (yzad-y')'*(yzad-y');
 Ez = (yzad-yz')'*(yzad-yz');

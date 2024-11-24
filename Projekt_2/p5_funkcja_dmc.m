@@ -3,7 +3,7 @@ k_shift=7;
 kk=kk+k_shift;
 % Odpowiedź skokowa zdyskretyzowanego systemu
 ys = p3_odpowiedz_skokowa_u(D);
-yz = p3_odpowiedz_skokowa_z(Dz);
+yz = p3_odpowiedz_skokowa_z(5000);
 
 % Konstrukcja macierzy M
 M = zeros(N,Nu);
@@ -51,6 +51,12 @@ for k=k_shift+1:kk
     % Uchyb regulacji
     e(k)=yzad(k)-y(k);
     disp(k);
+
+    % Aktualizacja przeszłych przyrostów zakłócenia
+    for m=Dz-1:-1:2
+        delta_z_p(m) = delta_z_p(m-1);
+    end
+    
     % Zmiana zakłócenia
     delta_z_p(1) = z(k) - z(k-1);
 
@@ -64,11 +70,7 @@ for k=k_shift+1:kk
     for n=D-1:-1:2
         delta_u_p(n) = delta_u_p(n-1);
     end
-
-    % Aktualizacja przeszłych przyrostów zakłócenia
-    for m=Dz-1:-1:2
-        delta_z_p(m) = delta_z_p(m-1);
-    end
+    
     delta_u_p(1) = delta_u;
 end
 y(1:k_shift)=[]; u(1:k_shift)=[];

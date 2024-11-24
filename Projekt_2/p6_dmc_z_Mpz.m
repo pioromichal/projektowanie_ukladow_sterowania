@@ -5,7 +5,7 @@ time=0:Tp:Tp*(kk-1);
 
 % Symulacja dla y_zad=1
 yzad = 1;
-yzad = yzad*ones(kk,1);
+% yzad = yzad*ones(kk,1);
 
 % DMC początkowy
 N = 17;
