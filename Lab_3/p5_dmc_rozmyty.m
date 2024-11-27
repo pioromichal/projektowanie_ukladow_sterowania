@@ -35,7 +35,7 @@ end
 
 % punkty rozmycia
 % TODO
-y_rozm=[30, 40, 50];
+y_rozm=[44, 48, 51.5];
 
 % Inicjalizacja
 u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
@@ -47,14 +47,13 @@ u(1)=25; y(1)=35.93; % TODO zaktualizować pp
 % Główna pętla symulacyjna
 for k=2:kk
     % Symulacja obiektu
-    % y(k) = readMeasurements (1);
-    y(k)=30;
+    y(k) = readMeasurements (1);
 
     % Uchyb regulacji
     e(k)=yzad(k)-y(k);
     
     % TODO dobrać kształt trapezu
-    mi=fun_przyn_trap(y(k), y_rozm, 6);
+    mi=fun_przyn_trap(y(k), y_rozm, 2);
 
     % Obliczenie przyrostu sygnału sterującego DMC
     delta_u = mi*(ke * e(k) - ku * delta_u_p');

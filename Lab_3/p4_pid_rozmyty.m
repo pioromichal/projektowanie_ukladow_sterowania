@@ -51,7 +51,7 @@ for k=3:kk
     e(k)=yzad(k)-y(k);
     
     % TODO dobrać kształt trapezu
-    mi=fun_przyn_trap(y(k), y_rozm, 6);
+    mi=fun_przyn_trap(y(k), y_rozm, 2);
 
     % sygnał sterujący regulatora PID
     u(k)=mi*(r2*e(k-2)+r1*e(k-1)+r0*e(k)+u(k-1));
