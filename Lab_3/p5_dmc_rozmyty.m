@@ -1,6 +1,7 @@
 clear;
-addpath ('D:\ SerialCommunication ') ; % add a path
-addpath ('Funkcje')
+addpath('D:\SerialCommunication') ; % add a path
+addpath('Funkcje')
+addpath('funkcje_przynaleznosci');
 % initSerialControl COM4 % initialise com port
 
 wykresy_online_konfiguracja;
@@ -42,7 +43,7 @@ u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 
 % Warunki początkowe
-u(1)=25; y(1)=35.93; % TODO zaktualizować pp
+u(1)=25; y(1)=Tpp; % TODO zaktualizować pp
 
 % Główna pętla symulacyjna
 for k=2:kk
@@ -54,6 +55,7 @@ for k=2:kk
     
     % TODO dobrać kształt trapezu
     mi=fun_przyn_trap(y(k), y_rozm, 2);
+    disp(mi);
 
     % Obliczenie przyrostu sygnału sterującego DMC
     delta_u = mi*(ke * e(k) - ku * delta_u_p');

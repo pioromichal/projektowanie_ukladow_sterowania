@@ -1,13 +1,13 @@
 clear;
 addpath ('D:\ SerialCommunication ') ; % add a path
 addpath('Funkcje');
-initSerialControl COM4 % initialise com port
+initSerialControl COM6 % initialise com port
 
 wykresy_online_konfiguracja;
 
 kk = 3000;
 
-Tpp = 000; % TODO Tu uzupełnić Tpp z zad 1
+Tpp = 36.18; % TODO Tu uzupełnić Tpp z zad 1
 
 % TODO
 % sprawdzić czy długości są dobre, na oko powinny się zgadzać
@@ -28,7 +28,7 @@ Td = 0.3;
 u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
 
 % warunki początkowe
-u(1:2)=25; y(1:2)=32.68; % TODO zaktualizować pp
+u(1:2)=25; y(1:2)=Tpp; % TODO zaktualizować pp
 
 
 % główna pętla symulacyjna
@@ -49,10 +49,12 @@ for k=3:kk
     end
 
     sendControls (1, 50) ; % W1
-    sendNonlinearControls(int64(u(k))); % G1
+    sendNonlinearControls(u(k)); % G1
 
     % aktualizacja wykresu
     wykresy_online_aktualizacja;
 
     waitForNewIteration () ; % wait for new iteration
 end
+
+% Error in sendNonlinearControls>@(x)(min(50,max(-50,f(x).*x*(1-odgiecie)+(1-f(x)).*x*(1+odgiecie)+odgiecie*50)))
