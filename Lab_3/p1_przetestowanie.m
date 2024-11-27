@@ -1,7 +1,7 @@
 clear T1;
 
 addpath ('D:\SerialCommunication') ; % add a path
-initSerialControl COM4 % initialise com port
+initSerialControl COM6 % initialise com port
 
 % konfiguracja wykresu
 figure(1);

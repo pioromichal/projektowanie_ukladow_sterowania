@@ -1,7 +1,7 @@
 clear;
 addpath ('D:\ SerialCommunication ') ; % add a path
 addpath ('Funkcje')
-initSerialControl COM4 % initialise com port
+initSerialControl COM6 % initialise com port
 
 wykresy_online_konfiguracja;
 
