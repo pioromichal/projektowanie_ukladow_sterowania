@@ -33,7 +33,7 @@ end
 
 % punkty rozmycia
 % TODO
-y_rozm=[30, 40, 50];
+y_rozm=[44, 48, 51.5];
 
 % inicjlizacja
 u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
