@@ -1,19 +1,24 @@
 function [mi] = fun_przyn_trap(z, z_vals, z_switch)
-    % FUN_PRZYN_TRAP Oblicza wartości funkcji przynależności trapezowej
-    % dla danego parametru `z`, wykorzystując zadane punkty centralne `z_vals`.
-    % Funkcja modeluje stopień przynależności do zbiorów rozmytych w oparciu 
-    % o równomiernie rozmieszczone punkty centralne (modele lokalne).
-    %
-    % Argumenty wejściowe:
-    %   z        - Wartość wejściowa (np. sterowanie lub wyjście), 
-    %              dla której obliczana jest przynależność do każdego zbioru rozmytego.
-    %   z_vals   - Wektor wartości centralnych dla każdego zbioru rozmytego (środków funkcji trapezowych).
-    %   z_switch - Długość strefy przejściowej (część nachylona trapezu), 
-    %              kontrolująca szerokość funkcji przynależności.
-    %
-    % Zwraca:
-    %   mi - Wektor o długości równej liczbie modeli lokalnych (numel(z_vals)),
-    %        zawierający stopnie przynależności wartości `z` do każdego modelu lokalnego.
+% FUN_PRZYN_TRAP Oblicza wartości funkcji przynależności trapezowej
+% dla danego parametru `z`, wykorzystując zadane punkty centralne `z_vals`.
+% Funkcja modeluje stopień przynależności do zbiorów rozmytych w oparciu 
+% o równomiernie rozmieszczone punkty centralne (modele lokalne).
+%
+% Argumenty wejściowe:
+%   z        - Wartość wejściowa (np. sterowanie lub wyjście), 
+%              dla której obliczana jest przynależność 
+%              do każdego zbioru rozmytego.
+%   z_vals   - Wektor wartości centralnych 
+%              dla każdego zbioru rozmytego 
+%              (środków funkcji trapezowych).
+%   z_switch - Długość strefy przejściowej 
+%              (część nachylona trapezu), 
+%              kontrolująca szerokość funkcji przynależności.
+%
+% Zwraca:
+%   mi - Wektor o długości równej liczbie modeli lokalnych,
+%        zawierający stopnie przynależności 
+%        wartości `z` do każdego modelu lokalnego.
    
     % Liczba Modeli
     numModels=length(z_vals);

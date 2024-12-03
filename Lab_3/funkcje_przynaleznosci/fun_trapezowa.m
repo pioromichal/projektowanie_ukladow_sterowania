@@ -3,11 +3,15 @@ function y = fun_trapezowa(x, a, b, c, d)
     % trapezowym lub prostokątnym prawostronnie domkniętym
     % 
     % Argumenty:
-    %   x - wartość, dla której obliczana jest przynależność (punkt wejściowy).
-    %   a - początek trapezu (lewy kraniec przedziału), gdzie funkcja przynależności wynosi 0.
-    %   b - początek płaskiej części trapezu, gdzie funkcja przynależności zaczyna wynosić 1.
-    %   c - koniec płaskiej części trapezu, gdzie funkcja przynależności zaczyna spadać z 1.
-    %   d - koniec trapezu (prawy kraniec przedziału), gdzie funkcja przynależności wraca do 0.
+    %   x - wartość, dla której obliczana jest przynależność.
+    %   a - początek trapezu (lewy kraniec przedziału), 
+    %       gdzie funkcja przynależności wynosi 0.
+    %   b - początek płaskiej części trapezu, 
+    %       gdzie funkcja przynależności zaczyna wynosić 1.
+    %   c - koniec płaskiej części trapezu, 
+    %       gdzie funkcja przynależności zaczyna spadać z 1.
+    %   d - koniec trapezu (prawy kraniec przedziału), 
+    %       gdzie funkcja przynależności wraca do 0.
     %
     % Zwraca:
     %   y - stopień przynależności wartości x do trapezoidalnego zbioru rozmytego.
