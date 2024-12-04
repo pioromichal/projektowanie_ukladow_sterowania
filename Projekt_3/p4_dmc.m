@@ -8,9 +8,9 @@ time=0:Tp:Tp*(kk-1);
 yzad(1:100)=-0.2;yzad(101:200)=2;yzad(201:300)=6;yzad(301:400)=11;
 
 % DMC początkowy
-N = 35;
-Nu = 35;
-D = 35;
+N = 50;
+Nu = 50;
+D = 50;
 lambda = 1;
 
 
@@ -20,10 +20,10 @@ lambda = 1;
 % DMC optymalny
 % TODO wyznaczyć bo są losowe
 
-N = 20;
-Nu = 3;
-D = 35;
-lambda = 0.5;
+N = 40;
+Nu = 40;
+D = 40;
+lambda = 1;
 
 [y, u] = p3_funkcja_dmc(kk, yzad, N, Nu, D, lambda);
 

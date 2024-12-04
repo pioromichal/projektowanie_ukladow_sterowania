@@ -1,13 +1,13 @@
-function [y,u] = p3_odpowiedz_skokowa(kk)
+function [y,u] = p3_odpowiedz_skokowa(kk, Ypp, Upp, dU)
 %P3_ODPOWIEDZ_SKOKOW Summary of this function goes here
 %   Detailed explanation goes here
 
 Td = 4;
 
 kk = kk + Td + 3;
-Ypp=0; Upp=0; dU=1;
+% Ypp=0; Upp=0; dU=0.01;
 
-u(1:Td+2)=0; u(Td+3:kk)=Upp+dU; y(1:kk)=0;
+u(1:Td+2)=Upp; u(Td+3:kk)=Upp+dU; y(1:kk)=Ypp;
 
 % główna pętla symulacyjna
 for k=3+Td:kk
