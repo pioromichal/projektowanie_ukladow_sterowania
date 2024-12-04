@@ -2,14 +2,14 @@ clear;
 addpath('D:\SerialCommunication') ; % add a path
 addpath('Funkcje')
 addpath('funkcje_przynaleznosci');
-% initSerialControl COM4 % initialise com port
+initSerialControl COM4 % initialise com port
 
 wykresy_online_konfiguracja;
 
 kk=3000; % koniec symulacji
 umin = 0; umax=100;
 
-Tpp = 35.93; % TODO Tu uzupełnić Tpp z zad 1
+Tpp = 36; % TODO Tu uzupełnić Tpp z zad 1
 
 % TODO
 % sprawdzić czy długości są dobre, na oko powinny się zgadzać
@@ -22,7 +22,7 @@ yzad(601:900) = Tpp+15; yzad(901:kk) = Tpp;
 D = 500;
 N = D;
 Nu = D;
-lambda = [1,1,1];
+lambda = [0.6,0.4,0.4];
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
 % TODO uzupełnić modele lokalne
@@ -43,18 +43,18 @@ u(1:kk)=0; y(1:kk)=0; e(1:kk)=0;
 delta_u_p(1:D-1)=0; % Przeszłe przyrosty u
 
 % Warunki początkowe
-u(1)=25; y(1)=Tpp; % TODO zaktualizować pp
+u(1)=25; y(1)=35.18; % TODO zaktualizować pp
 
 % Główna pętla symulacyjna
 for k=2:kk
     % Symulacja obiektu
-    y(k) = readMeasurements (1);
+    y(k) = readMeasurements(1);
 
     % Uchyb regulacji
     e(k)=yzad(k)-y(k);
     
     % TODO dobrać kształt trapezu
-    mi=fun_przyn_trap(y(k), y_rozm, 2);
+    mi=fun_przyn_trap(y(k), y_rozm, 3);
     disp(mi);
 
     % Obliczenie przyrostu sygnału sterującego DMC
