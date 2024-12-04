@@ -1,4 +1,6 @@
 clear;
+
+addpath("Funkcje\");
 kk = 400;
 Tp=0.5;
 time=0:Tp:Tp*(kk-1);
