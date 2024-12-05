@@ -4,7 +4,7 @@ function [y, u] = p3_funkcja_dmc(kk, yzad, N, Nu, D, lambda)
 umin = -1; umax=1;
 
 % Odpowiedź skokowa zdyskretyzowanego systemu
-ys = p3_odpowiedz_skokowa(D, 0, 0, 0.1);
+ys = p3_odpowiedz_skokowa(D, 0, 0.1);
 
 [ke,ku] = DMC_offline(ys, N, Nu, lambda, D);
 
