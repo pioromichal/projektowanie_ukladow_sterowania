@@ -33,8 +33,8 @@ function plot_membership_functions(z_vals, z_switch, subplot_position)
 end
 
 % Przykładowe użycie
-z_vals = [1];  % Wartości centralne dla modeli lokalnych
-z_switch = 0.5;  % Szerokość płaskiego fragmentu trapezu
+z_vals = [-0.5 1,3,6];  % Wartości centralne dla modeli lokalnych
+z_switch = 1;  % Szerokość płaskiego fragmentu trapezu
 
 % Wczytanie danych i rysowanie subplotów
 load("statyka.mat");

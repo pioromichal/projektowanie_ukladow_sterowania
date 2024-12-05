@@ -8,7 +8,7 @@ time=0:Tp:Tp*(kk-1);
 
 yzad(1:100)=-0.2;yzad(101:200)=2;yzad(201:300)=6;yzad(301:400)=11;yzad(401:600)=0;
 
-ilosc_modeli = 1;
+ilosc_modeli = 2;
 
 if ilosc_modeli == 1
     centra_rozmycia = 1.00;
@@ -25,11 +25,17 @@ if ilosc_modeli == 1
     % ogr_gor = [K_gor*I, Ti_gor*I, Td_gor*I];
 
 elseif ilosc_modeli == 2
+    centra_rozmycia = [0.00 4.00];
+    z_switch = 1.00;
+    K_values = [0.19060 0.06232];
+    Ti_values = [4.02327 4.31750];
+    Td_values = [0.55439 0.05790];
+
 elseif ilosc_modeli == 3
     centra_rozmycia = [0, 3, 6]; % Centra rozmycia dla każdego modelu
     z_switch = 1;
     % wyliczane z błędu kwadratowego
-    K_values = [0.17832 0.10239 0.05427]; 
+    K_values = [0.17832 0.10239 0.05427];
     Ti_values = [2.69015 7.84737 3.52440];
     Td_values = [0.94919 0.26134 0.07093];
 
@@ -42,7 +48,7 @@ elseif ilosc_modeli == 3
     % Ti_dol = 0.01; Ti_gor= 10;
     % Td_dol = 0; Td_gor= 1;
     % parametry_pocz = [0.5*I, 1.0*I, 0.0*I];
-    % ogr_dol = [K_dol*I, Ti_dol*I, Td_dol*I];  
+    % ogr_dol = [K_dol*I, Ti_dol*I, Td_dol*I];
     % ogr_gor = [K_gor*I, Ti_gor*I, Td_gor*I];
 elseif ilosc_modeli == 4
 elseif ilosc_modeli == 5
