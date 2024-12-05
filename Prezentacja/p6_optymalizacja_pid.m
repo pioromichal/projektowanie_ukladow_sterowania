@@ -6,7 +6,7 @@ yzad = yzad*ones(kk,1); Tp = 1;
 
 parametry_pocz = [1, 1, 1];
 ogr_dol = [0,0,0];  
-ogr_gor = [20, 15, 1];
+ogr_gor = [20, 30, 20];
 
 parametry_optymalne = fmincon(@(parametry) ...
     pid_funkcja_kosztu(parametry, kk, yzad), ...

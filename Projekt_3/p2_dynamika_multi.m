@@ -2,7 +2,7 @@ clear; close all;
 
 % Parametry symulacji
 y0 = 0; % Początkowa wartość wyjściowa
-kk_segment = 60; % Liczba próbek dla jednego skoku
+kk_segment = 60+7; % Liczba próbek dla jednego skoku
 Tp = 0.5;
 time_segment = 0:Tp:Tp*(kk_segment-1); % Oś czasu dla jednego segmentu
 u_values = [-1, 0, 0.2, 0.4, 0.6, 0.8, 1.0]; % Wartości skoków sygnału wejściowego
@@ -16,7 +16,7 @@ y_all = zeros(num_segments, kk_segment); % Macierz wyników y
 for i = 1:num_segments
     % Sygnał wejściowy dla danego segmentu
     u = zeros(1, kk_segment);
-    u(8:kk_segment) = u_values(i);
+    u(7:kk_segment) = u_values(i);
     
     % Symulacja obiektu dla danego skoku
     y = zeros(1, kk_segment);
@@ -35,8 +35,11 @@ figure;
 % Wykres sygnału wyjściowego dla różnych skoków
 hold on;
 for i = 1:num_segments
-    plot(time_plot, y_all(i, :), 'DisplayName', sprintf('u = %.1f', u_values(i)));
+    plot(time_plot(8:kk_segment)-3, y_all(i, (8:kk_segment)), 'DisplayName', sprintf('u = %.1f', u_values(i)));
 end
+% u = zeros(1, kk_segment);
+% u(7:kk_segment) = u_values(7);
+% plot(time_plot(2:kk_segment)-3, u(2:kk_segment));
 hold off;
 
 xlabel('t [s]');

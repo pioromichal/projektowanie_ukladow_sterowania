@@ -1,6 +1,4 @@
-function r = pid_offline_rozmyty(K, Ti, Td, Tp)
-%P4_STROJENIE_PID Summary of this function goes here
-%   Detailed explanation goes here
+function r = p5_pid_offline_rozmyty(K, Ti, Td, Tp)
 
 r2 = K*Td/Tp;
 r1 = K*(Tp/(2*Ti) - (2*Td)/Tp - 1);
