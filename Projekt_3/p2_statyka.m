@@ -25,6 +25,6 @@ grid minor;
 
 % Zmień kropki na przecinki na osiach
 zamien_kropki(); 
-exportgraphics(gcf, 'Wykresy/charakterystyka_statystyczna.pdf', 'ContentType', 'vector');
+exportgraphics(gcf, 'Wykresy/p2_charakterystyka_statystyczna.pdf', 'ContentType', 'vector');
 % close;
 % K=? bo nieliniowe

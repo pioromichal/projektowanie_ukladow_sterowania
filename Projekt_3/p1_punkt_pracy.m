@@ -35,5 +35,5 @@ title('Sygnał wyjściowy', 'FontSize', 12); % Mały tytuł dla drugiego wykresu
 zamien_kropki(); 
 
 % Zapis wykresu jako plik PDF
-exportgraphics(gcf, 'Wykresy/z1_test.pdf', 'ContentType', 'vector');
+exportgraphics(gcf, 'Wykresy/p1_test.pdf', 'ContentType', 'vector');
 close;

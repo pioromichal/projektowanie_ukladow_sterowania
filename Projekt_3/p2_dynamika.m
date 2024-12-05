@@ -40,7 +40,7 @@ title('Sygnał wyjściowy', 'FontSize', 12); % Mały tytuł dla drugiego wykresu
 % zamien_kropki(); 
 
 % Zapis wykresu jako plik PDF
-exportgraphics(gcf, 'wykresy/z2_odp_skokowe_u.pdf', 'ContentType', 'vector');
+exportgraphics(gcf, 'wykresy/p2_dynamika.pdf', 'ContentType', 'vector');
 % close;
 
 % K = ? bo nieliniowe 
