@@ -1,26 +1,32 @@
 clear;
-parametry_pocz = [0.0, 0.0, 0.0];
+
 kk = 100;
 yzad = 1;
-yzad = yzad*ones(kk,1);
+yzad = yzad*ones(kk,1); Tp = 1;
 
-ogr_dol = [-20, -20, -20];  
-ogr_gor = [20, 20, 20];
+parametry_pocz = [1, 1, 1];
+ogr_dol = [0,0,0];  
+ogr_gor = [20, 15, 1];
 
 parametry_optymalne = fmincon(@(parametry) ...
     pid_funkcja_kosztu(parametry, kk, yzad), ...
     parametry_pocz, [], [], [], [], ogr_dol, ogr_gor);
 
-r2=parametry_optymalne(3);
-r1=parametry_optymalne(2);
-r0=parametry_optymalne(1);
+K=parametry_optymalne(1);
+Ti=parametry_optymalne(2);
+Td=parametry_optymalne(3);
 
 disp('Optymalne parametry PID:');
-disp(['r0: ', num2str(r0)]);
-disp(['r1: ', num2str(r1)]);
-disp(['r2: ', num2str(r2)]);
+disp(['K = ', num2str(K), ';']);
+disp(['Ti = ', num2str(Ti), ';']);
+disp(['Td = ', num2str(Td), ';']);
 
-[y, u] = p4_funkcja_pid(kk, yzad, r2, r1, r0);
+r2 = K*Td/Tp;
+r1 = K*(Tp/(2*Ti) - (2*Td)/Tp - 1);
+r0 = K*(1 + Tp/(2*Ti) + Td/Tp);
+
+
+[y, u] = p4_funkcja_pid(kk, yzad, r2,r1,r0);
 
 % wyniki symulacji
 figure; stairs(u);
@@ -34,9 +40,14 @@ E = (yzad-y')'*(yzad-y');
 disp(['E: ', num2str(E)]);
 
 function E = pid_funkcja_kosztu(parametry, kk, yzad)
-    r0 = parametry(1);
-    r1 = parametry(2);
-    r2 = parametry(3);
+    K = parametry(1);
+    Ti = parametry(2);
+    Td = parametry(3);
+    Tp = 1;
+
+    r2 = K*Td/Tp;
+    r1 = K*(Tp/(2*Ti) - (2*Td)/Tp - 1);
+    r0 = K*(1 + Tp/(2*Ti) + Td/Tp);
 
     [y, ~] = p4_funkcja_pid(kk, yzad, r2, r1, r0);
     
