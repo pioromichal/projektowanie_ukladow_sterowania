@@ -2,13 +2,13 @@ clear;
 addpath("Funkcje\");
 addpath("funkcje_przynaleznosci\");
 
-kk = 600;
+kk = 400;
 Tp=0.5;
 time=0:Tp:Tp*(kk-1);
 
-yzad(1:100)=-0.2;yzad(101:200)=2;yzad(201:300)=6;yzad(301:400)=11;yzad(401:600)=0;
+yzad(1:100)=-0.2;yzad(101:200)=2;yzad(201:300)=6;yzad(301:400)=11;
 
-ilosc_modeli = 2;
+ilosc_modeli = 3;
 
 if ilosc_modeli == 1
     centra_rozmycia = 1.00;
@@ -51,8 +51,29 @@ elseif ilosc_modeli == 3
     % ogr_dol = [K_dol*I, Ti_dol*I, Td_dol*I];
     % ogr_gor = [K_gor*I, Ti_gor*I, Td_gor*I];
 elseif ilosc_modeli == 4
+    % ga
+    centra_rozmycia = [-0.30  1.00  4.00  8.00];
+    z_switch = 1.00;
+    K_values = [0.24600 0.08191 0.06264 0.06181];
+    Ti_values = [6.20168 4.33436 6.84850 3.57889];
+    Td_values = [0.56929 0.48366 0.05358 0.05684];
+
 elseif ilosc_modeli == 5
+    centra_rozmycia = [0.00  2.00  4.00  8.00 10.00];
+    z_switch = 1.00;
+    K_values = [0.17329 0.12520 0.04616 0.11658 0.10576];
+    Ti_values = [2.53968 5.64913 7.06806 1.26287 4.94235];
+    Td_values = [0.99052 0.35427 0.01298 0.09492 0.99590];
+
+    % centra_rozmycia = [0.00  1.50  4.00  7.00 10.00];
+    % z_switch = 1.00;
+    % K_values = [0.25124 0.04768 0.21287 0.07260 0.10373];
+    % Ti_values = [6.42941 2.60320 3.81477 1.30985 4.21462];
+    % Td_values = [0.53562 0.99998 0.99846 0.21803 0.90616];
+
 end
+
+
 % Walidacja ilości modeli i parametrów
 if length(K_values) ~= ilosc_modeli || length(Ti_values) ~= ilosc_modeli || length(Td_values) ~= ilosc_modeli
     error('Liczba modeli i liczba parametrów nie są zgodne!');
@@ -64,23 +85,12 @@ for i = 1:ilosc_modeli
     parametry_pid{i} = p5_pid_offline_rozmyty(K_values(i), Ti_values(i), Td_values(i), Tp);
 end
 
-[yp, up] = p5_funkcja_pid_rozmyty(kk, yzad, parametry_pid, centra_rozmycia, z_switch);
+[y, u] = p5_funkcja_pid_rozmyty(kk, yzad, parametry_pid, centra_rozmycia, z_switch);
 
-
-
-% Pid optymalny
-% TODO wyznaczyć jakiś, teraz sa losowe XD
-
-K = 0.09;
-Ti = 7.5;
-Td = 1.8;
-
-[r2, r1, r0] = pid_offline(K,Ti,Td,0.5);
-[y, u] = p3_funkcja_pid(kk, yzad, r2, r1, r0);
 
 % wyniki symulacji
 figure;
-hold on; stairs(time,up);
+hold on; stairs(time,u);
 ylabel('u'); xlabel('t [s]'); grid on; grid minor;
 % legend('u: PID dostrojony', 'u: PID początkowy', 'Location','best');
 title('Sygnał wejściowy'); % Tytuł wykresu
@@ -88,7 +98,7 @@ zamien_kropki();
 % exportgraphics(gcf, 'Wykresy/p4_pid_u.pdf', 'ContentType', 'vector');
 % close;
 
-figure;  hold on; stairs(time,yp); stairs(time,yzad,'--');
+figure;  hold on; stairs(time,y); stairs(time,yzad,'--');
 xlabel('t [s]'); ylabel('y'); grid on; grid minor;
 % legend('y: PID dostrojony', 'y: PID początkowy', 'y_{zad}', 'Location','best');
 title('Sygnał wyjściowy'); % Tytuł wykresu
@@ -96,8 +106,7 @@ zamien_kropki();
 % exportgraphics(gcf, 'Wykresy/p4_pid_y.pdf', 'ContentType', 'vector');
 % close;
 
-Ep = (yzad-yp)*(yzad-yp)';
 E = (yzad-y)*(yzad-y)';
-disp(Ep)
+disp(E)
 
 
