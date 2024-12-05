@@ -2,7 +2,7 @@
 kk=200;
 Tp=0.5;
 time=0:Tp:Tp*(kk-1);
-[y,u] = p3_odpowiedz_skokowa(kk, 0, 0, 1);
+[y,u] = p3_odpowiedz_skokowa(kk, 0, 0.1);
 
 % Wykres z użyciem stairs dla y
 figure; 

@@ -1,11 +1,12 @@
-function [y,u] = p3_odpowiedz_skokowa(kk, Ypp, Upp, dU)
+function [y,u] = p3_odpowiedz_skokowa(kk, Ypp, dU)
 %P3_ODPOWIEDZ_SKOKOW Summary of this function goes here
 %   Detailed explanation goes here
 
 Td = 4;
 
 kk = kk + Td + 3;
-% Ypp=0; Upp=0; dU=0.01;
+
+Upp = znajdz_u_do_odp_DMC(Ypp);
 
 u(1:Td+2)=Upp; u(Td+3:kk)=Upp+dU; y(1:kk)=Ypp;
 
