@@ -6,7 +6,7 @@ kk = 400;
 Tp=0.5;
 time=0:Tp:Tp*(kk-1);
 
-yzad(1:100)=-0.2;yzad(101:200)=2;yzad(201:300)=6;yzad(301:400)=11;
+yzad(1:100)=-0.2;yzad(101:200)=2;yzad(201:300)=6;yzad(301:400)=11;yzad(401:600)=0; % ostatni skok nie wykorzystany
 
 ilosc_modeli = 3;
 
@@ -98,7 +98,7 @@ zamien_kropki();
 % exportgraphics(gcf, 'Wykresy/p4_pid_u.pdf', 'ContentType', 'vector');
 % close;
 
-figure;  hold on; stairs(time,y); stairs(time,yzad,'--');
+figure;  hold on; stairs(time,y); stairs(time,yzad(1:kk),'--');
 xlabel('t [s]'); ylabel('y'); grid on; grid minor;
 % legend('y: PID dostrojony', 'y: PID początkowy', 'y_{zad}', 'Location','best');
 title('Sygnał wyjściowy'); % Tytuł wykresu
@@ -106,7 +106,7 @@ zamien_kropki();
 % exportgraphics(gcf, 'Wykresy/p4_pid_y.pdf', 'ContentType', 'vector');
 % close;
 
-E = (yzad-y)*(yzad-y)';
+E = (yzad(1:kk)-y)*(yzad(1:kk)-y)';
 disp(E)
 
 
