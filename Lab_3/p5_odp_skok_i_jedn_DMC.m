@@ -34,10 +34,10 @@ exportgraphics(gca, 'Wykresy/odpowiedzi_skokowe_DMC.pdf', 'ContentType', 'vector
 ys = dmc_odp_jednostkowa_rozm(kk);
 
 figure;
-plot(ys(:,1),'.',MarkerSize=1.5);
+plot(ys(:,1),'.',MarkerSize=2);
 hold on;
-plot(ys(:,2),'.',MarkerSize=1.5);
-plot(ys(:,3),'.',MarkerSize=1.5);
+plot(ys(:,2),'.',MarkerSize=2);
+plot(ys(:,3),'.',MarkerSize=2);
 legend('ys: Regulator 1', 'ys: Regulator 2', 'ys: Regulator 3', 'Location', 'southeast');
 xlabel('k');
 ylabel('ys');

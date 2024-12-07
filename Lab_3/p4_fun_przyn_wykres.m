@@ -2,7 +2,7 @@ addpath('funkcje_przynaleznosci')
 
 % Parametry funkcji przynależności
 z_vals = [44, 48, 51.5];  % Wartości centralne (np. dla funkcji trapezowych)
-z_switch = 2;  % Przełącznik szerokości strefy przejściowej (opcjonalne dopasowanie)
+z_switch = 3;  % Przełącznik szerokości strefy przejściowej (opcjonalne dopasowanie)
 
 % Zakres wartości wejściowych
 z = 30:0.1:55;  % Zmienna wejściowa z w zakresie od 20 do 60

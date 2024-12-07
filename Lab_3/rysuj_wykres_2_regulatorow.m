@@ -19,8 +19,8 @@ function [e1, e2] = rysuj_wykres_2_regulatorow(plik1, plik2, nazwa1, nazwa2)
     y2 = data2.y(1:kk); % Przycinanie wyjścia dla regulatora 2
 
     % Obliczanie błędów względem yzad
-    e1 = sum(y1 - yzad); % Błąd dla regulatora 1
-    e2 = sum(y2 - yzad); % Błąd dla regulatora 2
+    e1 = sum(y1(101:kk) - yzad(101:kk)); % Błąd dla regulatora 1
+    e2 = sum(y2(101:kk) - yzad(101:kk)); % Błąd dla regulatora 2
 
     % Tworzenie wykresu z dwoma sub-plotami
     figure;
