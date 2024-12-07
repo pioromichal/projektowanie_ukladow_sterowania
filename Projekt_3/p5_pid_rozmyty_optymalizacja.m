@@ -10,23 +10,6 @@ centra_rozmycia = [0,1.5,5,8,10]; % Centra rozmycia dla każdego modelu
 z_switch = 1;
 ilosc_modeli = length(centra_rozmycia);
 
-function E = pid_funkcja_kosztu(parametry, kk, yzad, centra_rozmycia, z_switch)
-    ilosc_modeli = length(centra_rozmycia);
-    K_values = parametry(1:ilosc_modeli); 
-    Ti_values = parametry((1:ilosc_modeli)+ilosc_modeli);
-    Td_values = parametry((1:ilosc_modeli)+ilosc_modeli*2); 
-
-    parametry_pid = cell(1, ilosc_modeli);
-    for i = 1:ilosc_modeli
-        parametry_pid{i} = p5_pid_offline_rozmyty(K_values(i), Ti_values(i), Td_values(i), 0.5);
-    end
-
-    [y, ~] = p5_funkcja_pid_rozmyty(kk, yzad, parametry_pid, centra_rozmycia, z_switch);
-
-    E = (yzad-y)*(yzad-y)';
-    % E = sum(abs(y-yzad));
-end
-
 I=ones(1,ilosc_modeli);
 % K_dol = 0.01; K_gor = 3;
 % Ti_dol = 0.01; Ti_gor= 10;
@@ -89,3 +72,20 @@ legend('Wyjście', 'Wartość zadana', Location='best');
 
 E = (yzad-y)*(yzad-y)';
 disp(['E: ', num2str(E)]);
+
+function E = pid_funkcja_kosztu(parametry, kk, yzad, centra_rozmycia, z_switch)
+    ilosc_modeli = length(centra_rozmycia);
+    K_values = parametry(1:ilosc_modeli); 
+    Ti_values = parametry((1:ilosc_modeli)+ilosc_modeli);
+    Td_values = parametry((1:ilosc_modeli)+ilosc_modeli*2); 
+
+    parametry_pid = cell(1, ilosc_modeli);
+    for i = 1:ilosc_modeli
+        parametry_pid{i} = p5_pid_offline_rozmyty(K_values(i), Ti_values(i), Td_values(i), 0.5);
+    end
+
+    [y, ~] = p5_funkcja_pid_rozmyty(kk, yzad, parametry_pid, centra_rozmycia, z_switch);
+
+    E = (yzad-y)*(yzad-y)';
+    % E = sum(abs(y-yzad));
+end

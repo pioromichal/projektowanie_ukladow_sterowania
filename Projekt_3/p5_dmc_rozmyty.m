@@ -19,7 +19,8 @@ function [y, u, E] = p5_dmc_rozmyty(ilosc_modeli)
         N = 50;
         Nu = 50;
         D = 50;
-        lambdy = [1,1];
+%         lambdy = [1,1];
+        lambdy = [5000,5000];
         centra_rozmycia = [0,1];
         z_switch = 1;
     
@@ -27,7 +28,8 @@ function [y, u, E] = p5_dmc_rozmyty(ilosc_modeli)
         N = 50;
         Nu = 50;
         D = 50;
-        lambdy = [1,1,1];
+%         lambdy = [1,1,1];
+        lambdy = [1000,5000,100];
         centra_rozmycia = [0,1,8];
         z_switch = 1;
     
@@ -35,7 +37,8 @@ function [y, u, E] = p5_dmc_rozmyty(ilosc_modeli)
         N = 50;
         Nu = 50;
         D = 50;
-        lambdy = [1,1,1,1];
+%         lambdy = [1,1,1,1];
+        lambdy = [1000,500,1000,100];
         centra_rozmycia = [0,2,4,8];
         z_switch = 2;
     
@@ -43,7 +46,8 @@ function [y, u, E] = p5_dmc_rozmyty(ilosc_modeli)
         N = 50;
         Nu = 50;
         D = 50;
-        lambdy = [10000*ones(1,5)];
+%         lambdy = [1,1,1,1,1];
+        lambdy = [1000,500,100,500,1000];
         centra_rozmycia = [0,1,2,4,6];
         z_switch = 1;
     
