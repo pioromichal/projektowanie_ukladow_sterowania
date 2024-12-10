@@ -9,7 +9,7 @@ T1 = 1:100;
 T3 = 1:100;
 k=1;
 while true
-    % [T1(k), T3(k)] = readMeasurements ([1, 3]);
+    [T1(k), T3(k)] = readMeasurements ([1, 3]);
 
     disp (['T1 = ', num2str(T1(k)), '    T3 = ', num2str(T3(k))]);
 
