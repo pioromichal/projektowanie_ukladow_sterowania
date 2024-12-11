@@ -19,7 +19,7 @@ yz1 = [];
 yz2 = [];
 
 figure(1);
-while (length(y1) < 100)
+while (1)
     if (t.BytesAvailable ~= 0)
         temp = fscanf(t);
         %disp(temp);
@@ -31,7 +31,7 @@ while (length(y1) < 100)
         yz1 = [yz1; YZ1];
         yz2 = [yz2; YZ2];
         
-        subplot(2,1,1); plot(y1); hold on; plot(y2); hold off; title('Wyjœcie'); xlabel('iteracja');
+        subplot(2,1,1); plot(y1); hold on; plot(y2); plot(yz1,'--'); plot(yz2,'--'); hold off; legend('y1','y2','yzad1','yzad2','Location','west');title('Wyjœcie'); xlabel('iteracja');
         subplot(2,1,2); stairs(u1); hold on; stairs(u2); hold off; title('Sterowanie'); xlabel('iteracja');
         drawnow
     end
