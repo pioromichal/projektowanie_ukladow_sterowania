@@ -29,6 +29,10 @@ for i=1:4 % dla kazdego u oddzielnie
     U(i, 5:kk) = 0;
 end
 
+sp(:,:,1:5)=[];
+
+% sp(1:5)=[];
+
 % %normalizacja odpowiedzi skokowej
 % u=(u-Upp)/dU;
 % y=(y-Ypp)/dU;
