@@ -1,11 +1,11 @@
 clear all;
 
-kk = 232;
+kk = 201;
 
 sp = p2_odpowiedzi_skokowe(kk);
 
 Tp = 0.5;
-time = 0:Tp:Tp*(kk+4); 
+time = 0:Tp:Tp*(kk-1); 
 
 % wykres
 
@@ -31,4 +31,4 @@ for i = 1:4 % dla każdego wejścia u_i
 end
 
 exportgraphics(gcf, 'Wykresy/p2_odpowiedzi_skokowe.pdf', 'ContentType', 'vector');
-close;
+% close;
