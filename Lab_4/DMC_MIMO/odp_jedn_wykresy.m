@@ -1,3 +1,5 @@
+D = 125;
+
 load('D:\Radek\STUDIA\2024Z\PUST\LAB\Lab_4\Pomiary\SKOK_U1_+15.mat')
 
 ys11 = y1(42+1:end);
@@ -10,7 +12,7 @@ ys12(1:10)=ys12(11);
 ys22 = y2(45+1:end);
 
 figure; hold on;
-plot(ys11); plot(ys21); plot(ys12);plot(ys22);
+plot(ys11(1:4:end)); plot(ys21(1:4:end)); plot(ys12(1:4:end));plot(ys22(1:4:end));
 
 [~,ys11,ys21,ys12,ys22] = odp_jedn(D);
 

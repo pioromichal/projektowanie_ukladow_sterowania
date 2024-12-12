@@ -9,11 +9,11 @@ ys21 = y2(42+1:end);
 load('D:\Radek\STUDIA\2024Z\PUST\LAB\Lab_4\Pomiary\SKOK_U2_+15.mat')
 
 ys12 = y1(45+1:end);
-ys12(1:10)=ys12(11);
+% ys12(1:10)=ys12(11);
 ys22 = y2(45+1:end);
 
 
-ymierz = ys12;
+ymierz = ys22(1:4:end);
 ymierz = (ymierz-ymierz(1))/15;
 
 kk = length(ymierz);
@@ -24,7 +24,7 @@ ogr_gor = [200,200, 50, 12];
 
 % Używamy algorytmu genetycznego
 IntCon = 4;  % Td musi być liczbą całkowitą
-options = optimoptions('ga', 'Display', 'iter'); % Opcje algorytmu genetycznego
+options = optimoptions('ga'); % Opcje algorytmu genetycznego
 
 parametry_optymalne = ga(@(parametry) ...
     funkcja_kosztu(parametry, kk, ymierz), 4, [], [], [], [], ...
