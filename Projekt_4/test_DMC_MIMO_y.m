@@ -4,11 +4,11 @@ kk = 250;
 
 y1_zad(1:kk)=10; y2_zad(1:kk)=0; y3_zad(1:kk)=0;
 Y_zad=[y1_zad;y2_zad;y3_zad];
-
-D=200; N=D; Nu=N; 
+% D=200; N=D; Nu=N; 
+D=200; N=100; Nu=50; 
 lambda=[1 1 1 1]; psi=[1 1 1];
 
-[Y,U,E] = p3_DMC_MIMO(kk,Y_zad,D,N,Nu,lambda,psi);
+[Y,U,E] = p6_DMC_MIMO_full_y_zad(kk,Y_zad,D,N,Nu,lambda,psi);
 
 figure;
 plot(1:kk, Y(1,:)); hold on;

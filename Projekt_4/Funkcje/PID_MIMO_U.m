@@ -1,5 +1,5 @@
 function [U,E]=PID_MIMO_U(k,Y,Y_zad,U,E,R0,R1,R2,U_nums)
-    E(:,k)=Y_zad(:,k)-Y;
+    E(:,k)=Y_zad-Y;
     
     U(:,k)=U(:,k-1);
     % for i=1:3
