@@ -11,10 +11,13 @@ ys12 = y1(45+1:end);
 ys12(1:10)=ys12(11);
 ys22 = y2(45+1:end);
 
-figure; hold on;
-plot(ys11(1:4:end)); plot(ys21(1:4:end)); plot(ys12(1:4:end));plot(ys22(1:4:end));
+figure; hold on; grid on; grid minor; xlabel('k'); ylabel('y');
+plot(ys11(1:4:end)); plot(ys21(1:4:end)); plot(ys12(1:4:end));plot(ys22(1:4:end)); legend('G1 \rightarrow T1','G1 \rightarrow T3','G2 \rightarrow T1','G2 \rightarrow T3',Location='best');
+exportgraphics(gcf, 'Wykresy/odp_jedn_real.pdf', 'ContentType', 'vector');
 
 [~,ys11,ys21,ys12,ys22] = odp_jedn(D);
 
-figure; hold on;
-plot(ys11); plot(ys21); plot(ys12);plot(ys22);
+figure; hold on; grid on; grid minor; xlabel('k'); ylabel('y');
+plot(ys11); plot(ys21); plot(ys12);plot(ys22); legend('G1 \rightarrow T1','G1 \rightarrow T3','G2 \rightarrow T1','G2 \rightarrow T3',Location='best');
+exportgraphics(gcf, 'Wykresy/odp_jedn_approx.pdf', 'ContentType', 'vector');
+
