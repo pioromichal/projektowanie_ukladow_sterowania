@@ -22,7 +22,7 @@ for i = 1:4 % dla każdego wejścia u_i
     for j = 1:3 % dla każdego wyjścia y_j
         subplot(4, 3, (i-1)*3 + j);
         plot(time, squeeze(sp(j, i, :)), colors(i)); 
-        title(['u_' num2str(i) ' → y_' num2str(j)], 'FontSize', 10, 'Interpreter', 'tex');
+        title(['u_' num2str(i) ' -> y_' num2str(j)], 'FontSize', 10, 'Interpreter', 'tex');
         xlabel('Czas [s]', 'FontSize', 9);
         ylabel(['y_' num2str(j)], 'FontSize', 9);
         ylim([y_min y_max]); 
