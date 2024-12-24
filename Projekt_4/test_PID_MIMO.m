@@ -34,7 +34,7 @@ figure;
 plot(1:kk, Y(1,:)); hold on;
 plot(1:kk, Y(2,:));
 plot(1:kk, Y(3,:));
-xlabel('Krok czasowy');
+xlabel('k');
 ylabel('Wartości wyjściowe');
 legend('y1', 'y2', 'y3');
 title('Wykres wartości wyjściowych');
