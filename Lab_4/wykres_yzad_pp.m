@@ -1,3 +1,4 @@
+%% yzad
 close all
 % Parametry symulacji
 T_s = 1; % Okres próbkowania (sekundy)
@@ -25,3 +26,20 @@ ylabel('Wartości zadane');
 % title('Symulacja wartości zadanych (y\_zad)');
 legend('Location', 'south');
 exportgraphics(gcf, 'Wykresy/automat_yzad.pdf', 'ContentType', 'vector');
+
+%% pp
+
+load("Pomiary\punkt_pracy.mat")
+
+y1 = y1/100;
+y2 = y2/100;
+
+figure; hold on; grid on; grid minor;
+plot(y1(1:600),  'DisplayName', 'Proces 1', LineWidth=0.75);
+plot(y2(1:600),  'DisplayName', 'Proces 2', LineWidth=0.75);
+% xticks(0:300:samples); % Znaczniki na osi X co 300
+xlabel('Czas [s]');
+ylabel('y');
+% title('Symulacja wartości zadanych (y\_zad)');
+legend('Location', 'best');
+exportgraphics(gcf, 'Wykresy/punkt_pracy.pdf', 'ContentType', 'vector');
