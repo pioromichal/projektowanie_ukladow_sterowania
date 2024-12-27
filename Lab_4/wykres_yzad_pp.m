@@ -43,3 +43,53 @@ ylabel('y');
 % title('Symulacja wartości zadanych (y\_zad)');
 legend('Location', 'best');
 exportgraphics(gcf, 'Wykresy/punkt_pracy.pdf', 'ContentType', 'vector');
+
+%% mechanizm zabezpieczający
+
+% load("Pomiary\")
+% 
+% y1 = y1/100;
+% y2 = y2/100;
+% 
+% figure; hold on; grid on; grid minor;
+% plot(y1(1:600),  'DisplayName', 'Proces 1', LineWidth=0.75);
+% plot(y2(1:600),  'DisplayName', 'Proces 2', LineWidth=0.75);
+% % xticks(0:300:samples); % Znaczniki na osi X co 300
+% xlabel('Czas [s]');
+% ylabel('y');
+% % title('Symulacja wartości zadanych (y\_zad)');
+% legend('Location', 'best');
+% exportgraphics(gcf, 'Wykresy/mech_zabezp.pdf', 'ContentType', 'vector');
+
+
+%%
+
+% Dane z tabeli
+D = [0, 100, 110, 125, 150, 200];              % Wartości D
+ilosc_rejestrow = [2, 600, 660, 750, 900, 1200]; % Ilość rejestrów
+dlugosc_cyklu = [2, 11.1, 12.1, 13.3, 15.5, 20.1]; % Długość cyklu (ms)
+
+% Tworzenie wykresu z dwiema osiami
+figure;
+xlim([-1 201]);
+
+% Oś prawa - Ilość rejestrów
+yyaxis right;
+plot(D, ilosc_rejestrow, '-o', 'LineWidth', 1.5);
+ylabel('Ilość rejestrów');
+ylim([0 1600]); % Zakres dla osi prawej
+
+% Oś lewa - Długość cyklu
+yyaxis left;
+plot(D, dlugosc_cyklu, '-s', 'LineWidth', 1.5);
+ylabel('Długość cyklu (ms)');
+ylim([0 22]); % Zakres dla osi lewej
+
+% Ustawienia osi i tytułu
+xlabel('D');
+% title('Parametry komunikacyjne');
+grid on;
+legend({'Długość cyklu', 'Ilość rejestrów'}, 'Location', 'southeast');
+
+% Eksport wykresu
+exportgraphics(gcf, 'Wykresy/cykl_rejestry.pdf', 'ContentType', 'vector');
