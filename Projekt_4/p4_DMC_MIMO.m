@@ -14,14 +14,11 @@ Tp=0.5;
 y1(1:4)=0; y2(1:4)=0; y3(1:4)=0;
 
 % nastawy
-K=[6.5, 4.5, 2.5];
-Ti=[25 45 60];
-Td=[0.0 0.0 0.0];
-
-U_nums=[3,1,2]; % które wejście wpływa na kolejne wyjścia
+D = 200; N = 8; Nu = 4;
+lambda=[1 1 1 1]; psi=[1 1 1];
 
 % symulacja
-[Y,U,E] = p3_PID_MIMO(kk,Tp,Y_zad,K,Ti,Td,U_nums);
+[Y,U,E] = p3_DMC_MIMO(kk, Y_zad, D, N, Nu, lambda, psi);
 
 disp(E)
 
@@ -36,8 +33,8 @@ ylabel('Wartości wyjściowe');
 legend('y1', 'y2', 'y3', 'y_{zad}', Location='best');
 title('Wykres wartości wyjściowych');
 grid on;
-% exportgraphics(gcf, 'Wykresy/p4_y_7.pdf', 'ContentType', 'vector');
-% close;
+exportgraphics(gcf, 'Wykresy/p4_y_3_dmc.pdf', 'ContentType', 'vector');
+close;
 
 % Wykres wartości sterowania
 figure;
@@ -50,5 +47,5 @@ ylabel('Wartości sterowania');
 legend('u1', 'u2', 'u3', 'u4', Location='best');
 title('Wykres wartości sterowania');
 grid on;
-% exportgraphics(gcf, 'Wykresy/p4_u_7.pdf', 'ContentType', 'vector');
-% close;
+exportgraphics(gcf, 'Wykresy/p4_u_3_dmc.pdf', 'ContentType', 'vector');
+close;
