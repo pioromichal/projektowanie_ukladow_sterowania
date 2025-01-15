@@ -1,41 +1,32 @@
 CASE  tryb_pracy_dzwig  OF
 	0: // wyłączenie
-		D0 := 0;
-		D0.0 :=1; // channel 1
-		D0.1 :=1; // channel 2
-		D0.4 :=1; // channel 5
-		HIOEN( TRUE , K0 , 0 , D0);
+//		D0 := 0;
+//		D0.0 := 1; // channel 1
+//		HIOEN( TRUE , K0 , 0 , D0);
 		
 		PWM_ON := FALSE;
-		dzwig.hamulec_X := 1;
-		dzwig.hamulec_Y := 1;
-		dzwig.hamulec_Z := 1;		
+		dzwig.hamulec_X := 0;	
 		
 	10: // włączenie
 		D0 := 0;
-		D0.0 :=1; // channel 1
-		D0.1 :=1; // channel 2
-		D0.4 :=1; // channel 5
+		D0.0 := 1; // channel 1
 		HIOEN( TRUE , K0 , D0, 0);
 		
 		PWM_ON := TRUE;
-		dzwig.hamulec_X := 0;
-		dzwig.hamulec_Y := 0;
-		dzwig.hamulec_Z := 0;	
+		dzwig.hamulec_X := 1;
+		dzwig.zad_X := 2000;
+		tryb_pracy_dzwig := 20;
+		
 		
 	20: //bazowanie
-		dzwig.sterowanie_X := 0;
-		dzwig.sterowanie_Y := 0;
-		dzwig.sterowanie_Z := 0;
-		
+		dzwig.sterowanie_X := 20.0;
+		dzwig.hamulec_X := 1;
+
 		dzwig.kierunek_X := 0;
-		dzwig.kierunek_Y := 0;
-		dzwig.kierunek_Z := 0;
-		
-		IF  dzwig.krancowka_X = 1 AND  dzwig.krancowka_Y = 1 AND dzwig.krancowka_Z = 1 THEN
+
+		IF  dzwig.krancowka_X = 1 THEN
+			dzwig.hamulec_X := 0;
 			DHCMOV( TRUE , 0 , 0 , SD4500 ); // channel 1
-			DHCMOV( TRUE , 0 , 0 , SD4500 ); // channel 2 ???
-			DHCMOV( TRUE , 0 , 0 , SD4500 ); // channel 5 ???
 			tryb_pracy_dzwig := 21;
 		END_IF;
 		
@@ -43,49 +34,55 @@ CASE  tryb_pracy_dzwig  OF
 		;
 		
 	30: // PID
-		PID1.e_k := INT_TO_REAL( DWORD_TO_WORD( dzwig.zad_X - dzwig.enc_X));
+	
+		PID3.e_k := DINT_TO_REAL(  dzwig.zad_X - dzwig.enc_X);
+		
 
-		PID1.r_0 := PID1.K_gain*(1.0+(PID1.T_p/(2.0*PID1.Ti))+PID1.Td/PID1.T_p);  //K*( 1+(Tp/(2*Ti))+Td/Tp )
-		PID1.r_1 := PID1.K_gain*((PID1.T_p/(2.0*PID1.Ti))-(2.0*PID1.Td/PID1.T_p)-1.0);  //K*( (Tp/(2*Ti))-(2*Td/Tp)-1 );
-		PID1.r_2 := PID1.K_gain*PID1.Td/PID1.T_p;  //K*Td/Tp;
-
-		dzwig.sterowanie_X := PID1.r_2 * PID1.e_km2 + PID1.r_1 * PID1.e_km1 + PID1.r_0 * PID1.e_k + dzwig.sterowanie_X_ukm1;
-		PID1.e_km1 := PID1.e_k;
-		PID1.e_km2 := PID1.e_km1;
-		
-		dzwig.sterowanie_X_ukm1 := dzwig.sterowanie_X;
-		
-		//
-		PID2.e_k := INT_TO_REAL( DWORD_TO_WORD( dzwig.zad_Y - dzwig.enc_Y));
-	
-		PID2.r_0 := PID2.K_gain*(1.0+(PID2.T_p/(2.0*PID2.Ti))+PID2.Td/PID2.T_p);  //K*( 1+(Tp/(2*Ti))+Td/Tp )
-		PID2.r_1 := PID2.K_gain*((PID2.T_p/(2.0*PID2.Ti))-(2.0*PID2.Td/PID2.T_p)-1.0);  //K*( (Tp/(2*Ti))-(2*Td/Tp)-1 );
-		PID2.r_2 := PID2.K_gain*PID2.Td/PID2.T_p;  //K*Td/Tp;
-	
-		dzwig.sterowanie_Y := PID2.r_2 * PID2.e_km2 + PID2.r_1 * PID2.e_km1 + PID2.r_0 * PID2.e_k + dzwig.sterowanie_Y_ukm1;
-		PID2.e_km1 := PID2.e_k;
-		PID2.e_km2 := PID2.e_km1;
-		
-		dzwig.sterowanie_Y_ukm1 := dzwig.sterowanie_Y;
-		
-		//
-		PID3.e_k := INT_TO_REAL( DWORD_TO_WORD( dzwig.zad_Z - dzwig.enc_Z));
-	
 		PID3.r_0 := PID3.K_gain*(1.0+(PID3.T_p/(2.0*PID3.Ti))+PID3.Td/PID3.T_p);  //K*( 1+(Tp/(2*Ti))+Td/Tp )
 		PID3.r_1 := PID3.K_gain*((PID3.T_p/(2.0*PID3.Ti))-(2.0*PID3.Td/PID3.T_p)-1.0);  //K*( (Tp/(2*Ti))-(2*Td/Tp)-1 );
 		PID3.r_2 := PID3.K_gain*PID3.Td/PID3.T_p;  //K*Td/Tp;
-	
-		dzwig.sterowanie_Z := PID3.r_2 * PID3.e_km2 + PID3.r_1 * PID3.e_km1 + PID3.r_0 * PID3.e_k + dzwig.sterowanie_Z_ukm1;
+
+		dzwig.sterowanie_X := PID3.r_2 * PID3.e_km2 + PID3.r_1 * PID3.e_km1 + PID3.r_0 * PID3.e_k + dzwig.sterowanie_X_ukm1;
 		PID3.e_km1 := PID3.e_k;
 		PID3.e_km2 := PID3.e_km1;
+
+		IF dzwig.sterowanie_X < -99.0 THEN
+			dzwig.sterowanie_X :=-99.0;
+		ELSIF dzwig.sterowanie_X >99.0 THEN
+			dzwig.sterowanie_X :=99.0;
+		END_IF;
+		dzwig.sterowanie_X_ukm1 := dzwig.sterowanie_X;
 		
-		dzwig.sterowanie_Z_ukm1 := dzwig.sterowanie_Z;
+		IF dzwig.sterowanie_X >=0.0 THEN 
+			dzwig.kierunek_X := 1;
+		ELSE
+			dzwig.kierunek_X :=0;
+			dzwig.sterowanie_X := -dzwig.sterowanie_X;
+		END_IF;
+		
+		
+		
 	
 	40:
-		PID( ?BOOL_EN? , ?ANY16_s1? , ?ANY16_s2? , ?ANY16_s3? , ?ANY16_d? );
+//	PID( ?BOOL_EN? , ?ANY16_s1? , ?ANY16_s2? , ?ANY16_s3? , ?ANY16_d? );
+;
 END_CASE;
 
-PWM( PWM_ON , dzwig.sterowanie_X , K100 , Y0 );
-PWM( PWM_ON , dzwig.sterowanie_Y , K100 , Y2 );
-PWM( PWM_ON , dzwig.sterowanie_Z , K100 , Y1 );
+IF dzwig.enc_X >8000 OR dzwig.krancowka_X THEN
+	dzwig.hamulec_X := 0;
+	dzwig.sterowanie_X := 100.0;
+END_IF;
+
+dzwig.sterowanie_X := 100.0 - dzwig.sterowanie_X;
+
+IF dzwig.sterowanie_X < 1.0 THEN
+	dzwig.sterowanie_X :=1.0;
+ELSIF dzwig.sterowanie_X >100.0 THEN
+	dzwig.sterowanie_X :=100.0;
+END_IF;
+
+
+
+PWM( PWM_ON , REAL_TO_INT(dzwig.sterowanie_X) , K100 , Y0 );
+
 

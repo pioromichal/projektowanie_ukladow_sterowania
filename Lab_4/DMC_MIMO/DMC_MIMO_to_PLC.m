@@ -4,7 +4,7 @@ N = D;
 Nu = D;
 
 S = odp_jedn(D+N);
-lambda=[1 1]; psi=[1 1];
+lambda=[0.5 0.5]; psi=[1 1];
 
 [Ke,Ku]=DMC_MIMO_offline(S,D,N,Nu,lambda,psi);
 
