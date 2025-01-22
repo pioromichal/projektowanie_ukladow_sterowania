@@ -77,11 +77,15 @@ END_CASE;
 // ograniczenia zakresu pracy dzwigu 0-8000 poza bazowaniem
 IF NOT bazowanie THEN
 	IF dzwig.kierunek_X =PRAWO AND dzwig.enc_X >8000 THEN
-		dzwig.hamulec_X := HAMULEC_ON;
-		dzwig.sterowanie_X := 0.0;
+		//dzwig.hamulec_X := HAMULEC_ON;
+		//dzwig.sterowanie_X := 0.0;
+		dzwig.kierunek_X := LEWO;
+		dzwig.sterowanie_X := 10.0;
 	ELSIF dzwig.kierunek_X = LEWO  AND (dzwig.enc_X < 0 OR dzwig.krancowka_X) THEN
-		dzwig.hamulec_X := HAMULEC_ON;
-		dzwig.sterowanie_X := 0.0;
+		//dzwig.hamulec_X := HAMULEC_ON;
+		//dzwig.sterowanie_X := 0.0;
+		dzwig.kierunek_X := PRAWO;
+		dzwig.sterowanie_X := 10.0;
 	END_IF;
 END_IF;
 
@@ -97,5 +101,4 @@ END_IF;
 
 // wysłanie do PWM
 PWM( PWM_ON , REAL_TO_INT(dzwig.sterowanie_X) , K100 , Y0 );
-
 
