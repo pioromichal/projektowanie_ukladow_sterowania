@@ -38,6 +38,7 @@ CASE  tryb_pracy_dzwig  OF
 		
 		
 	30: // PID autorski
+	dzwig.hamulec_X := HAMULEC_OFF;
 	PID3.K_gain := 1.0;
 	PID3.Ti := 100000.0;
 	PID3.Td := 0.0;		
