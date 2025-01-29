@@ -9,7 +9,7 @@ yzad1 = [repmat(1, 1, 200), repmat(3, 1, 200), repmat(0.5, 1, 200), ...
 yzad2 = yzad1;
 yzad3 = yzad1;
 Y_zad = [yzad1; yzad2; yzad3]; 
-U_nums = [4, 2, 1]; 
+U_nums = [3,4,2]; 
 
 % Ograniczenia
 K_min = [0, 0, 0];
@@ -17,7 +17,7 @@ K_max = [10, 10, 10];
 Ti_min = [0, 0, 0];
 Ti_max = [200, 200, 200];
 Td_min = [0, 0, 0];
-Td_max = [1.0, 1.0, 1.0];
+Td_max = [0.1, 0.1, 0.1];
 lower_bounds = [K_min, Ti_min, Td_min];
 upper_bounds = [K_max, Ti_max, Td_max];
 
@@ -56,8 +56,10 @@ ylabel('y');
 legend('y1', 'y2', 'y3', 'y_{zad}', 'Location', 'best');
 title('Wyjście obiektu');
 grid on;
-exportgraphics(gcf, 'Wykresy/p5_y_PID.pdf', 'ContentType', 'vector');
-close;
+file_suffix = strjoin(string(U_nums), '_'); % Połączenie elementów wektora z podkreślnikami
+filename = ['Wykresy/p5_y_PID_'+ file_suffix+ '.pdf']; % Składanie nazwy pliku
+exportgraphics(gcf, filename, 'ContentType', 'vector');
+% close;
 
 figure;
 plot(t, U(1,1:kk), t, U(2,1:kk), t, U(3,1:kk), t, U(4,1:kk));
@@ -66,8 +68,10 @@ ylabel('u');
 legend('u1', 'u2', 'u3', 'u4', 'Location', 'best');
 title('Wejście obiektu');
 grid on;
-exportgraphics(gcf, 'Wykresy/p5_u_PID.pdf', 'ContentType', 'vector');
-close;
+file_suffix = strjoin(string(U_nums), '_'); % Połączenie elementów wektora z podkreślnikami
+filename = ['Wykresy/p5_u_PID_'+ file_suffix+ '.pdf']; % Składanie nazwy pliku
+exportgraphics(gcf, filename, 'ContentType', 'vector');
+% close;
 
 % --- Funkcja kosztu ---
 function E = pid_cost_function(params, kk, Tp, Y_zad, U_nums)

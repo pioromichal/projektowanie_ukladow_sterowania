@@ -46,20 +46,30 @@ exportgraphics(gcf, 'Wykresy/punkt_pracy.pdf', 'ContentType', 'vector');
 
 %% mechanizm zabezpieczający
 
-% load("Pomiary\")
-% 
+load("Pomiary\zabezpieczenie_pid.mat")
+
 % y1 = y1/100;
 % y2 = y2/100;
-% 
-% figure; hold on; grid on; grid minor;
-% plot(y1(1:600),  'DisplayName', 'Proces 1', LineWidth=0.75);
-% plot(y2(1:600),  'DisplayName', 'Proces 2', LineWidth=0.75);
-% % xticks(0:300:samples); % Znaczniki na osi X co 300
-% xlabel('Czas [s]');
-% ylabel('y');
-% % title('Symulacja wartości zadanych (y\_zad)');
-% legend('Location', 'best');
-% exportgraphics(gcf, 'Wykresy/mech_zabezp.pdf', 'ContentType', 'vector');
+t=50:224;
+colors=lines(2);
+
+figure; hold on; grid on; grid minor;
+plot(y1(t),'Color',colors(1,:));
+plot(yz1(t),'--','Color',colors(1,:));
+plot(y2(t),'Color',colors(2,:));
+plot(yz2(t),'--','Color',colors(2,:));
+xlabel('Czas [s]');
+ylabel('y');
+legend('y1','y1_{zad}','y2','y1_{zad}', Location='north');
+exportgraphics(gcf, 'Wykresy/mech_zabezp_y.pdf', 'ContentType', 'vector');
+
+figure; hold on; grid on; grid minor;
+legend('u1','u2', Location='best');
+plot(u1(t));plot(u2(t));
+xlabel('Czas [s]');
+ylabel('u');
+legend('u1','u2', Location='best');
+exportgraphics(gcf, 'Wykresy/mech_zabezp_u.pdf', 'ContentType', 'vector');
 
 
 %%
