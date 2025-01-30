@@ -26,7 +26,7 @@ W ramach zajęć implementowano, testowano i optymalizowano algorytmy sterowania
 ---
 
 ## Course Description
-During this course, control algorithms were implemented, tested, and optimized in MATLAB and real laboratory setups. Experiments were conducted with PID, DMC, and fuzzy control algorithms. Step responses were analyzed, controller parameters were tuned, and different control strategies were compared. In the projects, processes were modeled, control algorithms were implemented, and their parameters were optimized. This repository contains materials and projects related to the course **Control Systems Design**. The content includes:
+During this course, control algorithms were implemented, tested, and optimized in MATLAB and real laboratory setups. Experiments were conducted with PID, DMC, and fuzzy control algorithms. Step responses were analyzed, controller parameters were tuned, and different control strategies were compared. In the projects, processes were modeled, control algorithms were implemented, and their parameters were optimized. This repository contains materials and projects related to the course **Development of Control Systems**. The content includes:
 - Control algorithm implementations
 - Experimental data from laboratories
 - Reports
